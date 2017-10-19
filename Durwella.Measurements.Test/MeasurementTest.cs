@@ -1,26 +1,25 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
 using System;
 using Unit = Measurements.Measurement;
+using Xunit;
 
 namespace Measurements
 {
-    [TestFixture]
     public class UnitTest
     {
-        [Test]
+        [Fact]
         public void SimpleToSIValue()
         {
             (1.0 * Units.Feet).ValueInSIUnits.Should().BeApproximately(0.3048, 0.0001);
         }
 
-        [Test]
+        [Fact]
         public void SimpleFromSIValue()
         {
             (1.0 * Units.Meters).ValueInUnits(Units.Feet).Should().BeApproximately(3.2808, 0.0001);
         }
 
-        [Test]
+        [Fact]
         public void CompoundUnitToSIValueTest()
         {
             var milesPerHour = new Unit("mph", Units.Miles / Units.Hours);
@@ -28,7 +27,7 @@ namespace Measurements
             (60.0 * milesPerHour).ValueInSIUnits.Should().BeApproximately(26.8224, 0.0001);
         }
 
-        [Test]
+        [Fact]
         public void CompoundUnitFromSIValueTest()
         {
             var metersPerSecond = Units.MetersPerSecond;
@@ -37,7 +36,7 @@ namespace Measurements
             (10.0 * metersPerSecond).ValueInUnits(milesPerHour).Should().BeApproximately(22.3694, 0.0001);
         }
 
-        [Test]
+        [Fact]
         public void HydrostaticPressureExample()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
@@ -47,13 +46,13 @@ namespace Measurements
             (rho * g * h).ValueInUnits(Units.PoundsPerSquareInch).Should().BeApproximately(4335.27504, 0.01);
         }
 
-        [Test]
+        [Fact]
         public void SimpleMatchingMeasurementTypeTest()
         {
             (1.0 * Units.Meters).Type.Should().Be(MeasurementTypes.Length);
         }
 
-        [Test]
+        [Fact]
         public void PressureMeasurementTypeTest()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
@@ -63,7 +62,7 @@ namespace Measurements
             (rho * g * h).Type.Should().Be(MeasurementTypes.Pressure);
         }
 
-        [Test]
+        [Fact]
         public void ToStringTest()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
@@ -73,19 +72,19 @@ namespace Measurements
             (1.23456 * Units.PoundsPerSquareInch).ToString("p = {0:0.000} {1}", Units.PoundsPerSquareInch).Should().Be("p = 1.235 psi");
         }
 
-        [Test]
+        [Fact]
         public void AdditionTest()
         {
             (1.0 * Units.MetersPerSecond + 1.0 * (Units.Miles / Units.Hours)).ValueInSIUnits.Should().BeApproximately(1.4470, 0.0001);
         }
 
-        [Test]
+        [Fact]
         public void SubtractionTest()
         {
             (1.0 * Units.MetersPerSecond - 1.0 * (Units.Miles / Units.Hours)).ValueInSIUnits.Should().BeApproximately(0.55296, 0.0001);
         }
 
-        [Test]
+        [Fact]
         public void DisallowConversionBetweenDifferentTypes()
         {
             var threw = false;
@@ -101,7 +100,7 @@ namespace Measurements
             threw.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void DisallowAddingDifferentTypes()
         {
             var threw = false;
@@ -116,7 +115,7 @@ namespace Measurements
             threw.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void DisallowSubtractingDifferentTypes()
         {
             var threw = true;
@@ -131,7 +130,7 @@ namespace Measurements
             threw.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void DocumentationExample()
         {
             var cookieCount = new MeasurementType("Cookie Count");

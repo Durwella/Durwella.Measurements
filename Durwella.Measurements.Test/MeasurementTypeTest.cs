@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Measurements.Test
 {
     public class MeasurementTypeTest
     {
-        [Test]
+        [Fact]
         public void RetrieveBaseTypes()
         {
             var baseTypeA = new MeasurementType("Base Type A");
@@ -19,13 +19,13 @@ namespace Measurements.Test
             (compoundType * baseTypeB).Should().Equals(baseTypeA);
         }
 
-        [Test]
+        [Fact]
         public void SimpleNonMatchingMeasurementTypeTest()
         {
             MeasurementTypes.Length.Should().NotBe(MeasurementTypes.Velocity);
         }
 
-        [Test]
+        [Fact]
         public void MoreComplicatedMeasurementTypeTest()
         {
             (MeasurementTypes.Length / MeasurementTypes.Time).Should().Be(MeasurementTypes.Velocity);
