@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using System;
-using Unit = Measurements.Measurement;
 using Xunit;
+using Unit = Measurements.Measurement;
 
 namespace Measurements
 {
@@ -143,7 +143,7 @@ namespace Measurements
             var workWeek = new Unit("work week", 40 * Units.Hours);
 
             var totalCookies = 12 * grossCookies;
-            var cookiesRate =  totalCookies / workWeek;
+            var cookiesRate = totalCookies / workWeek;
 
             cookiesRate.ToString("{0:0.000} {1}").Should().Be("0.012 cookies/s");
             cookiesRate.ToString(cookies / Units.Minutes).Should().Be("0.72 cookies/min");

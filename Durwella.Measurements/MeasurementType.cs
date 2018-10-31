@@ -31,7 +31,7 @@ namespace Measurements
             _defaultUnit = null;
         }
 
-        
+
         internal Combinable<MeasurementType> _baseTypes = new Combinable<MeasurementType>(new List<MeasurementType>(), new List<MeasurementType>());
 
         public Unit NewSIUnit(string name)
@@ -127,7 +127,8 @@ namespace Measurements
             {
                 return _baseTypes.Numerator.First().Name.GetHashCode();
             }
-            else {
+            else
+            {
                 return this._baseTypes.GetHashCode();
             }
         }
@@ -146,8 +147,9 @@ namespace Measurements
 
         public override bool Equals(object obj)
         {
+            // TODO: Improve testing of this
             var other = obj as Combinable<T>;
-            if (obj == null) return false;
+            if (other == null) return false;
 
             return this.Numerator.SequenceEqual(other.Numerator) && this.Denominator.SequenceEqual(other.Denominator);
         }
