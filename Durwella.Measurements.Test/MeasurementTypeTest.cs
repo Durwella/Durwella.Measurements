@@ -16,7 +16,7 @@ namespace Measurements.Test
 
             var compoundType = new MeasurementType("Compound Type", baseTypeA / baseTypeB);
             
-            (compoundType * baseTypeB).Should().Equals(baseTypeA);
+            (compoundType * baseTypeB).Should().Be(baseTypeA);
         }
 
         [Fact]
