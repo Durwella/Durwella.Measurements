@@ -3,6 +3,16 @@ using Xunit;
 
 namespace Measurements
 {
+    public class UnitSystemsTest
+    {
+        [Fact]
+        public void SiLength()
+        {
+            var system = new SiSystem();
+            system[MeasurementTypes.Length].Should().Be(Units.Meters);
+        }
+
+    }
     public class UnitsTest
     {
         [Fact]
