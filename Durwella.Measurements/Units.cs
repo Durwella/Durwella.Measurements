@@ -22,6 +22,7 @@ namespace Measurements
         // Mass
         public static Unit Kilograms = MeasurementTypes.Mass.NewSIUnit("kg");
         public static Unit Grams = new Unit("g", Kilograms / 1000.0);
+        public static Unit PoundsMass = new Unit("lb", 0.45359237 * Kilograms);
 
         // Area
         public static Unit SquareMeters = MeasurementTypes.Area.NewSIUnit("m2");
@@ -44,10 +45,10 @@ namespace Measurements
 
         // Force
         public static Unit Newtons = MeasurementTypes.Force.NewSIUnit("N");
-        public static Unit Pounds = new Unit("lb", 4.44822 * Newtons);
+        public static Unit PoundsForce = new Unit("lbf", 4.448222 * Newtons);
 
         // Pressure
         public static Unit Pascals = MeasurementTypes.Pressure.NewSIUnit("Pa");
-        public static Unit PoundsPerSquareInch = new Unit("psi", Pounds / SquareInches);
+        public static Unit PoundsPerSquareInch = new Unit("psi", PoundsForce / SquareInches);
     }
 }

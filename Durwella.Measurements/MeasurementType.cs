@@ -108,6 +108,8 @@ namespace Measurements
             return newType;
         }
 
+        public override string ToString() => Name;
+
         public override bool Equals(object obj)
         {
             var type = obj as MeasurementType;

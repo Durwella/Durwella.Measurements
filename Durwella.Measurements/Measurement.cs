@@ -69,6 +69,11 @@ namespace Measurements
             return _multipleOfSI / unit._multipleOfSI;
         }
 
+        public override string ToString()
+        {
+            return $"{Name} ({Type})";
+        }
+
         public string ToString(string format = "", Measurement unit = null)
         {
             if (String.IsNullOrEmpty(format)) format = "{0:0.00} {1}";
