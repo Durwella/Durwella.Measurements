@@ -1,15 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Durwella.Measurements</PackageId>
-    <PackageVersion>0.1</PackageVersion>
-    <Authors>Neal Miller, Durwella LLC</Authors>
-    <Description>Repository for Entity Framework Core with sharding support</Description>
-    <Copyright>Copyright 2017 (c) AgileLabs. All rights reserved.</Copyright>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <Authors>Neal Miller, Jacob Foshee, Durwella LLC</Authors>
+    <Description>Utilities for using measurements with units.</Description>
+    <Copyright>Copyright 2018 (c) Durwella. All rights reserved.</Copyright>
     <PackageTags>measurments science engineering</PackageTags>
     <PackageProjectUrl>https://github.com/Durwella/Durwella.Measurements</PackageProjectUrl>
     <Title>Durwella Measurements</Title>
+    <Company>Durwella LLC</Company>
   </PropertyGroup>
 
 </Project>
