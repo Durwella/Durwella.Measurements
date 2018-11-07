@@ -7,9 +7,9 @@
     {
         /// <summary>
         /// Get the Unit System's standard <see cref="Measurement"/> 
-        /// for the given <see cref="MeasurementType"/>.
+        /// for the given <see cref="Dimension"/>.
         /// For example, returns kg for SI[Mass]
         /// </summary>
-        Measurement this[MeasurementType measurementType] { get; }
+        Measurement this[Dimension dimension] { get; }
     }
 }

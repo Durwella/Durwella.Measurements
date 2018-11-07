@@ -5,18 +5,18 @@ using Unit = Measurements.Measurement;
 
 namespace Measurements
 {
-    public class MeasurementType
+    public class Dimension
     {
         private string _name;
         private Unit _defaultUnit;
 
-        public MeasurementType(string name)
+        public Dimension(string name)
         {
             _name = name;
-            _baseTypes.Numerator = new List<MeasurementType> { this };
+            _baseTypes.Numerator = new List<Dimension> { this };
         }
 
-        public MeasurementType(string name, MeasurementType type)
+        public Dimension(string name, Dimension type)
         {
             this._name = name;
             //this._defaultUnit = type._defaultUnit;
@@ -25,14 +25,14 @@ namespace Measurements
             MeasurementTypes.CompoundTypes.Add(type, this);
         }
 
-        private MeasurementType(RationalCombination<MeasurementType> combinable)
+        private Dimension(RationalCombination<Dimension> combinable)
         {
             _baseTypes = combinable;
             _defaultUnit = null;
         }
 
 
-        internal RationalCombination<MeasurementType> _baseTypes = new RationalCombination<MeasurementType>(new List<MeasurementType>(), new List<MeasurementType>());
+        internal RationalCombination<Dimension> _baseTypes = new RationalCombination<Dimension>(new List<Dimension>(), new List<Dimension>());
 
         public Unit NewSIUnit(string name)
         {
@@ -40,10 +40,10 @@ namespace Measurements
             return _defaultUnit;
         }
 
-        internal RationalCombination<MeasurementType> CombineWith(MeasurementType t2)
+        internal RationalCombination<Dimension> CombineWith(Dimension t2)
         {
-            List<MeasurementType> numerator = this._baseTypes.Numerator.Concat(t2._baseTypes.Numerator).OrderBy(u => u.Name).ToList();
-            List<MeasurementType> denominator = this._baseTypes.Denominator.Concat(t2._baseTypes.Denominator).OrderBy(u => u.Name).ToList();
+            List<Dimension> numerator = this._baseTypes.Numerator.Concat(t2._baseTypes.Numerator).OrderBy(u => u.Name).ToList();
+            List<Dimension> denominator = this._baseTypes.Denominator.Concat(t2._baseTypes.Denominator).OrderBy(u => u.Name).ToList();
 
             var i = numerator.Count() - 1;
             var j = denominator.Count() - 1;
@@ -66,7 +66,7 @@ namespace Measurements
                 i--;
             }
 
-            return new RationalCombination<MeasurementType>(numerator, denominator);
+            return new RationalCombination<Dimension>(numerator, denominator);
         }
 
         public Unit DefaultUnit { get { return _defaultUnit; } }
@@ -90,20 +90,20 @@ namespace Measurements
                 + String.Join(" ", denominatorStrings);
         }
 
-        public static MeasurementType operator *(MeasurementType type1, MeasurementType type2)
+        public static Dimension operator *(Dimension type1, Dimension type2)
         {
-            return new MeasurementType(type1.CombineWith(type2));
+            return new Dimension(type1.CombineWith(type2));
         }
 
-        public static MeasurementType operator /(MeasurementType type1, MeasurementType type2)
+        public static Dimension operator /(Dimension type1, Dimension type2)
         {
             return type1 * type2.Inverse();
         }
 
-        public MeasurementType Inverse()
+        public Dimension Inverse()
         {
-            var newType = new MeasurementType(this.Name); ;
-            newType._baseTypes = new RationalCombination<MeasurementType>(this._baseTypes.Denominator, this._baseTypes.Numerator);
+            var newType = new Dimension(this.Name); ;
+            newType._baseTypes = new RationalCombination<Dimension>(this._baseTypes.Denominator, this._baseTypes.Numerator);
 
             return newType;
         }
@@ -112,7 +112,7 @@ namespace Measurements
 
         public override bool Equals(object obj)
         {
-            var type = obj as MeasurementType;
+            var type = obj as Dimension;
             if (type == null) return false;
 
             if (_baseTypes.Numerator.Count() == 1 && _baseTypes.Denominator.Count() == 0

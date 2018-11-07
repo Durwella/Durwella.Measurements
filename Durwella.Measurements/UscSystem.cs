@@ -8,14 +8,14 @@ namespace Measurements
     /// </summary>
     public class UscSystem : IUnitSystem
     {
-        private readonly Dictionary<MeasurementType, Measurement> _baseTypes = new Dictionary<MeasurementType, Measurement>
+        private readonly Dictionary<Dimension, Measurement> _baseTypes = new Dictionary<Dimension, Measurement>
         {
             { MeasurementTypes.Length, Units.Feet },
             { MeasurementTypes.Mass, Units.PoundsMass },
             { MeasurementTypes.Time, Units.Seconds },
         };
 
-        public Measurement this[MeasurementType measurementType] =>
-            _baseTypes[measurementType];
+        public Measurement this[Dimension dimension] =>
+            _baseTypes[dimension];
     }
 }

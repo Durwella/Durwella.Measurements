@@ -6,10 +6,10 @@ namespace Measurements
     public class Measurement
     {
         private string _name;
-        private MeasurementType _type;
+        private Dimension _type;
         private double _multipleOfSI = 1.0;
 
-        public Measurement(string name, MeasurementType type)
+        public Measurement(string name, Dimension type)
         {
             _name = name;
             _type = type;
@@ -29,11 +29,11 @@ namespace Measurements
 
         public string Name { get { return _name; } }
 
-        public MeasurementType Type
+        public Dimension Type
         {
             get
             {
-                MeasurementType compound = null;
+                Dimension compound = null;
                 if (MeasurementTypes.CompoundTypes.TryGetValue(_type, out compound)) {
                     _type = compound;
                     return compound;

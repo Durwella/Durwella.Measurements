@@ -133,8 +133,8 @@ namespace Measurements
         [Fact]
         public void DocumentationExample()
         {
-            var cookieCount = new MeasurementType("Cookie Count");
-            var cookieRate = new MeasurementType("Cookie Rate", cookieCount / MeasurementTypes.Time);
+            var cookieCount = new Dimension("Cookie Count");
+            var cookieRate = new Dimension("Cookie Rate", cookieCount / MeasurementTypes.Time);
 
             var cookies = cookieCount.NewSIUnit("cookies");
             var dozenCookies = new Unit("dz", 12 * cookies);

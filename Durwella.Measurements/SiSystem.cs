@@ -7,14 +7,14 @@ namespace Measurements
     /// </summary>
     public class SiSystem : IUnitSystem
     {
-        private readonly Dictionary<MeasurementType, Measurement> _baseTypes = new Dictionary<MeasurementType, Measurement>
+        private readonly Dictionary<Dimension, Measurement> _baseTypes = new Dictionary<Dimension, Measurement>
         {
             { MeasurementTypes.Length, Units.Meters },
             { MeasurementTypes.Mass, Units.Kilograms },
             { MeasurementTypes.Time, Units.Seconds },
         };
 
-        public Measurement this[MeasurementType measurementType] =>
-            _baseTypes[measurementType];
+        public Measurement this[Dimension dimension] =>
+            _baseTypes[dimension];
     }
 }

@@ -3,18 +3,18 @@ using Xunit;
 
 namespace Measurements.Test
 {
-    public class MeasurementTypeTest
+    public class DimensionTest
     {
         [Fact]
         public void RetrieveBaseTypes()
         {
-            var baseTypeA = new MeasurementType("Base Type A");
+            var baseTypeA = new Dimension("Base Type A");
             baseTypeA.NewSIUnit("Unit A");
 
-            var baseTypeB = new MeasurementType("Base Type B");
+            var baseTypeB = new Dimension("Base Type B");
             baseTypeB.NewSIUnit("Unit B");
 
-            var compoundType = new MeasurementType("Compound Type", baseTypeA / baseTypeB);
+            var compoundType = new Dimension("Compound Type", baseTypeA / baseTypeB);
             
             (compoundType * baseTypeB).Should().Be(baseTypeA);
         }
