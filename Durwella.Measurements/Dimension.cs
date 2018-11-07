@@ -9,30 +9,29 @@ namespace Measurements
     {
         private string _name;
         private Unit _defaultUnit;
+        private RationalCombination<Dimension> _baseDimensions = new RationalCombination<Dimension>(new List<Dimension>(), new List<Dimension>());
 
         public Dimension(string name)
         {
             _name = name;
-            _baseTypes.Numerator = new List<Dimension> { this };
+            _baseDimensions.Numerator = new List<Dimension> { this };
         }
 
-        public Dimension(string name, Dimension type)
+        public Dimension(string name, Dimension dimension)
         {
             this._name = name;
-            //this._defaultUnit = type._defaultUnit;
-            this._baseTypes = type._baseTypes;
+            //this._defaultUnit = dimension._defaultUnit;
+            this._baseDimensions = dimension._baseDimensions;
 
-            MeasurementTypes.CompoundTypes.Add(type, this);
+            Dimensions.CompoundDimensions.Add(dimension, this);
         }
 
         private Dimension(RationalCombination<Dimension> combinable)
         {
-            _baseTypes = combinable;
+            _baseDimensions = combinable;
             _defaultUnit = null;
         }
 
-
-        internal RationalCombination<Dimension> _baseTypes = new RationalCombination<Dimension>(new List<Dimension>(), new List<Dimension>());
 
         public Unit NewSIUnit(string name)
         {
@@ -42,8 +41,8 @@ namespace Measurements
 
         internal RationalCombination<Dimension> CombineWith(Dimension t2)
         {
-            List<Dimension> numerator = this._baseTypes.Numerator.Concat(t2._baseTypes.Numerator).OrderBy(u => u.Name).ToList();
-            List<Dimension> denominator = this._baseTypes.Denominator.Concat(t2._baseTypes.Denominator).OrderBy(u => u.Name).ToList();
+            List<Dimension> numerator = this._baseDimensions.Numerator.Concat(t2._baseDimensions.Numerator).OrderBy(u => u.Name).ToList();
+            List<Dimension> denominator = this._baseDimensions.Denominator.Concat(t2._baseDimensions.Denominator).OrderBy(u => u.Name).ToList();
 
             var i = numerator.Count() - 1;
             var j = denominator.Count() - 1;
@@ -75,14 +74,14 @@ namespace Measurements
 
         public string ToSIUnitString()
         {
-            if (_baseTypes.Numerator.Count() == 1 && _baseTypes.Denominator.Count() == 0)
+            if (_baseDimensions.Numerator.Count() == 1 && _baseDimensions.Denominator.Count() == 0)
             {
-                return _baseTypes.Numerator.First().DefaultUnit.Name;
+                return _baseDimensions.Numerator.First().DefaultUnit.Name;
             }
 
             // TODO account for multiple appearances of a unit (e.g. s2 instead of s s)
-            var numeratorStrings = _baseTypes.Numerator.Select(t => t.ToSIUnitString());
-            var denominatorStrings = _baseTypes.Denominator.Select(t => t.ToSIUnitString());
+            var numeratorStrings = _baseDimensions.Numerator.Select(t => t.ToSIUnitString());
+            var denominatorStrings = _baseDimensions.Denominator.Select(t => t.ToSIUnitString());
 
             return String.Join(" ", numeratorStrings)
                 + (numeratorStrings.Count() == 0 && denominatorStrings.Count() > 0 ? "1" : "")
@@ -90,48 +89,47 @@ namespace Measurements
                 + String.Join(" ", denominatorStrings);
         }
 
-        public static Dimension operator *(Dimension type1, Dimension type2)
+        public static Dimension operator *(Dimension dimension1, Dimension dimension2)
         {
-            return new Dimension(type1.CombineWith(type2));
+            return new Dimension(dimension1.CombineWith(dimension2));
         }
 
-        public static Dimension operator /(Dimension type1, Dimension type2)
+        public static Dimension operator /(Dimension dimension1, Dimension dimension2)
         {
-            return type1 * type2.Inverse();
+            return dimension1 * dimension2.Inverse();
         }
 
         public Dimension Inverse()
         {
-            var newType = new Dimension(this.Name); ;
-            newType._baseTypes = new RationalCombination<Dimension>(this._baseTypes.Denominator, this._baseTypes.Numerator);
-
-            return newType;
+            var newDimensions = new Dimension(this.Name); ;
+            newDimensions._baseDimensions = new RationalCombination<Dimension>(this._baseDimensions.Denominator, this._baseDimensions.Numerator);
+            return newDimensions;
         }
 
         public override string ToString() => Name;
 
         public override bool Equals(object obj)
         {
-            var type = obj as Dimension;
-            if (type == null) return false;
+            var dimension = obj as Dimension;
+            if (dimension == null) return false;
 
-            if (_baseTypes.Numerator.Count() == 1 && _baseTypes.Denominator.Count() == 0
-                && type._baseTypes.Numerator.Count() == 1 && type._baseTypes.Denominator.Count() == 0)
+            if (_baseDimensions.Numerator.Count() == 1 && _baseDimensions.Denominator.Count() == 0
+                && dimension._baseDimensions.Numerator.Count() == 1 && dimension._baseDimensions.Denominator.Count() == 0)
             {
-                return _baseTypes.Numerator.First() == type._baseTypes.Numerator.First();
+                return _baseDimensions.Numerator.First() == dimension._baseDimensions.Numerator.First();
             }
-            return this._baseTypes.Equals(type._baseTypes);
+            return this._baseDimensions.Equals(dimension._baseDimensions);
         }
 
         public override int GetHashCode()
         {
-            if (_baseTypes.Numerator.Count() == 1 && _baseTypes.Denominator.Count() == 0)
+            if (_baseDimensions.Numerator.Count() == 1 && _baseDimensions.Denominator.Count() == 0)
             {
-                return _baseTypes.Numerator.First().Name.GetHashCode();
+                return _baseDimensions.Numerator.First().Name.GetHashCode();
             }
             else
             {
-                return this._baseTypes.GetHashCode();
+                return this._baseDimensions.GetHashCode();
             }
         }
     }

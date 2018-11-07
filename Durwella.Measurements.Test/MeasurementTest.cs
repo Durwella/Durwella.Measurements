@@ -47,19 +47,19 @@ namespace Measurements
         }
 
         [Fact]
-        public void SimpleMatchingMeasurementTypeTest()
+        public void SimpleMatchingDimensionTest()
         {
-            (1.0 * Units.Meters).Type.Should().Be(MeasurementTypes.Length);
+            (1.0 * Units.Meters).Dimension.Should().Be(Dimensions.Length);
         }
 
         [Fact]
-        public void PressureMeasurementTypeTest()
+        public void PressureDimensionTest()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
             var rho = 1000 * Units.KilogramsPerCubicMeter;
             var h = 10000 * Units.Feet;
 
-            (rho * g * h).Type.Should().Be(MeasurementTypes.Pressure);
+            (rho * g * h).Dimension.Should().Be(Dimensions.Pressure);
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace Measurements
         }
 
         [Fact]
-        public void DisallowConversionBetweenDifferentTypes()
+        public void DisallowConversionBetweenDifferentDimensions()
         {
             var threw = false;
             try
@@ -101,7 +101,7 @@ namespace Measurements
         }
 
         [Fact]
-        public void DisallowAddingDifferentTypes()
+        public void DisallowAddingDifferentDimensions()
         {
             var threw = false;
             try
@@ -116,7 +116,7 @@ namespace Measurements
         }
 
         [Fact]
-        public void DisallowSubtractingDifferentTypes()
+        public void DisallowSubtractingDifferentDimensions()
         {
             var threw = true;
             try
@@ -134,7 +134,7 @@ namespace Measurements
         public void DocumentationExample()
         {
             var cookieCount = new Dimension("Cookie Count");
-            var cookieRate = new Dimension("Cookie Rate", cookieCount / MeasurementTypes.Time);
+            var cookieRate = new Dimension("Cookie Rate", cookieCount / Dimensions.Time);
 
             var cookies = cookieCount.NewSIUnit("cookies");
             var dozenCookies = new Unit("dz", 12 * cookies);

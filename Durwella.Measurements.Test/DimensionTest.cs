@@ -6,29 +6,29 @@ namespace Measurements.Test
     public class DimensionTest
     {
         [Fact]
-        public void RetrieveBaseTypes()
+        public void RetrieveBaseDimensions()
         {
-            var baseTypeA = new Dimension("Base Type A");
-            baseTypeA.NewSIUnit("Unit A");
+            var baseDimensionA = new Dimension("Base Dimension A");
+            baseDimensionA.NewSIUnit("Unit A");
 
-            var baseTypeB = new Dimension("Base Type B");
-            baseTypeB.NewSIUnit("Unit B");
+            var baseDimensionB = new Dimension("Base Dimension B");
+            baseDimensionB.NewSIUnit("Unit B");
 
-            var compoundType = new Dimension("Compound Type", baseTypeA / baseTypeB);
-            
-            (compoundType * baseTypeB).Should().Be(baseTypeA);
+            var compoundDimension = new Dimension("Compound Dimension", baseDimensionA / baseDimensionB);
+
+            (compoundDimension * baseDimensionB).Should().Be(baseDimensionA);
         }
 
         [Fact]
-        public void SimpleNonMatchingMeasurementTypeTest()
+        public void SimpleNonMatchingDimensionTest()
         {
-            MeasurementTypes.Length.Should().NotBe(MeasurementTypes.Velocity);
+            Dimensions.Length.Should().NotBe(Dimensions.Velocity);
         }
 
         [Fact]
-        public void MoreComplicatedMeasurementTypeTest()
+        public void MoreComplicatedDimensionTest()
         {
-            (MeasurementTypes.Length / MeasurementTypes.Time).Should().Be(MeasurementTypes.Velocity);
+            (Dimensions.Length / Dimensions.Time).Should().Be(Dimensions.Velocity);
         }
     }
 }

@@ -1,45 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Measurements
 {
     public class Measurement
     {
         private string _name;
-        private Dimension _type;
+        private Dimension _dimension;
         private double _multipleOfSI = 1.0;
 
-        public Measurement(string name, Dimension type)
+        public Measurement(string name, Dimension dimension)
         {
             _name = name;
-            _type = type;
+            _dimension = dimension;
         }
 
         public Measurement(string name, Measurement unit)
         {
             _name = name;
-
-            _type = unit._type;
+            _dimension = unit._dimension;
             _multipleOfSI = unit._multipleOfSI;
         }
 
-        private Measurement(Measurement unit): this(unit._name, unit)
+        private Measurement(Measurement unit) : this(unit._name, unit)
         {
         }
 
         public string Name { get { return _name; } }
 
-        public Dimension Type
+        public Dimension Dimension
         {
             get
             {
                 Dimension compound = null;
-                if (MeasurementTypes.CompoundTypes.TryGetValue(_type, out compound)) {
-                    _type = compound;
-                    return compound;
-                } else
+                if (Dimensions.CompoundDimensions.TryGetValue(_dimension, out compound))
                 {
-                    return _type;
+                    _dimension = compound;
+                    return compound;
+                }
+                else
+                {
+                    return _dimension;
                 }
             }
         }
@@ -52,37 +52,38 @@ namespace Measurements
             }
         }
 
-        private static void checkTypes(Measurement m1, Measurement m2)
+        private static void checkDimensions(Measurement m1, Measurement m2)
         {
-            var type1 = m1._type;
-            var type2 = m2._type;
-            if (!type1.Equals(type2))
+            var dimension1 = m1._dimension;
+            var dimension2 = m2._dimension;
+            if (!dimension1.Equals(dimension2))
             {
-                throw new ArgumentException($"Types do not match: {m1.Type.Name}, {m2.Type.Name} ");
+                throw new ArgumentException($"Dimensions do not match: {m1.Dimension.Name}, {m2.Dimension.Name} ");
             }
         }
 
         public double ValueInUnits(Measurement unit)
         {
-            checkTypes(this, unit);
-            
+            checkDimensions(this, unit);
+
             return _multipleOfSI / unit._multipleOfSI;
         }
 
         public override string ToString()
         {
-            return $"{Name} ({Type})";
+            return $"{Name} ({Dimension})";
         }
 
         public string ToString(string format = "", Measurement unit = null)
         {
             if (String.IsNullOrEmpty(format)) format = "{0:0.00} {1}";
-            if (unit == null) unit = Type.DefaultUnit;
+            if (unit == null) unit = Dimension.DefaultUnit;
 
             if (unit == null)
             {
                 return String.Format(format, ValueInSIUnits, this.ToSIUnitString());
-            } else
+            }
+            else
             {
                 return String.Format(format, ValueInUnits(unit), unit.Name);
             }
@@ -95,14 +96,14 @@ namespace Measurements
 
         public string ToSIUnitString()
         {
-            return Type.ToSIUnitString();
+            return Dimension.ToSIUnitString();
         }
 
         public static Measurement operator *(Measurement m1, Measurement m2)
         {
             var newMeasurement = new Measurement(m2);
             newMeasurement._multipleOfSI = m1._multipleOfSI * m2._multipleOfSI;
-            newMeasurement._type = m1._type * m2._type;
+            newMeasurement._dimension = m1._dimension * m2._dimension;
             newMeasurement._name = m1._name + " " + m2._name;
 
             return newMeasurement;
@@ -137,12 +138,12 @@ namespace Measurements
 
         public static Measurement operator /(Measurement meas, double n)
         {
-            return (1.0/ n) * meas;
+            return (1.0 / n) * meas;
         }
 
         public static Measurement operator +(Measurement m1, Measurement m2)
         {
-            checkTypes(m1, m2);
+            checkDimensions(m1, m2);
 
             var newUnit = new Measurement(m1);
             newUnit._multipleOfSI = m1._multipleOfSI + m2._multipleOfSI;
@@ -151,7 +152,7 @@ namespace Measurements
         }
         public static Measurement operator -(Measurement m1, Measurement m2)
         {
-            checkTypes(m1, m2);
+            checkDimensions(m1, m2);
 
             var newUnit = new Measurement(m1);
             newUnit._multipleOfSI = m1._multipleOfSI - m2._multipleOfSI;
@@ -166,7 +167,7 @@ namespace Measurements
 
             newUnit._name = "1/(" + newUnit._name + ")";
             newUnit._multipleOfSI = 1.0 / this._multipleOfSI;
-            newUnit._type = this._type.Inverse();
+            newUnit._dimension = this._dimension.Inverse();
 
             return newUnit;
         }

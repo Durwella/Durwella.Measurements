@@ -10,22 +10,22 @@ namespace Measurements
         [Theory(DisplayName = "USCS:Length"), AutoMoqData]
         public void UscLength(UscSystem subject)
         {
-            subject[MeasurementTypes.Length].Should().Be(Units.Feet);
-            subject[MeasurementTypes.Length].Type.Should().Be(MeasurementTypes.Length);
+            subject[Dimensions.Length].Should().Be(Units.Feet);
+            subject[Dimensions.Length].Dimension.Should().Be(Dimensions.Length);
         }
 
         [Theory(DisplayName = "USCS:Mass"), AutoMoqData]
         public void UscMass(UscSystem subject)
         {
-            subject[MeasurementTypes.Mass].Should().Be(Units.PoundsMass);
-            subject[MeasurementTypes.Mass].Type.Should().Be(MeasurementTypes.Mass);
+            subject[Dimensions.Mass].Should().Be(Units.PoundsMass);
+            subject[Dimensions.Mass].Dimension.Should().Be(Dimensions.Mass);
         }
 
         [Theory(DisplayName = "USCS:Time"), AutoMoqData]
         public void UscTime(UscSystem subject)
         {
-            subject[MeasurementTypes.Time].Should().Be(Units.Seconds);
-            subject[MeasurementTypes.Time].Type.Should().Be(MeasurementTypes.Time);
+            subject[Dimensions.Time].Should().Be(Units.Seconds);
+            subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
     }
 }

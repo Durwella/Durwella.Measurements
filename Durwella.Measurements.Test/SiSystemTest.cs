@@ -10,46 +10,46 @@ namespace Measurements
         [Theory(DisplayName = "SI:Length"), AutoMoqData]
         public void SiLength(SiSystem subject)
         {
-            subject[MeasurementTypes.Length].Should().Be(Units.Meters);
-            subject[MeasurementTypes.Length].Type.Should().Be(MeasurementTypes.Length);
+            subject[Dimensions.Length].Should().Be(Units.Meters);
+            subject[Dimensions.Length].Dimension.Should().Be(Dimensions.Length);
         }
 
         [Theory(DisplayName = "SI:Mass"), AutoMoqData]
         public void SiMass(SiSystem subject)
         {
-            subject[MeasurementTypes.Mass].Should().Be(Units.Kilograms);
-            subject[MeasurementTypes.Mass].Type.Should().Be(MeasurementTypes.Mass);
+            subject[Dimensions.Mass].Should().Be(Units.Kilograms);
+            subject[Dimensions.Mass].Dimension.Should().Be(Dimensions.Mass);
         }
 
         [Theory(DisplayName = "SI:Time"), AutoMoqData]
         public void SiTime(SiSystem subject)
         {
-            subject[MeasurementTypes.Time].Should().Be(Units.Seconds);
-            subject[MeasurementTypes.Time].Type.Should().Be(MeasurementTypes.Time);
+            subject[Dimensions.Time].Should().Be(Units.Seconds);
+            subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
 
         //[Theory(DisplayName = "SI:Electromagnetism"), AutoMoqData]
         //public void SiElectro(SiSystem subject)
         //{
-        //    subject[MeasurementTypes.Electromagnetism].Should().Be(Units.Amperes);
+        //    subject[Dimensions.Electromagnetism].Should().Be(Units.Amperes);
         //}
 
         //[Theory(DisplayName = "SI:Temperature"), AutoMoqData]
         //public void SiTemperature(SiSystem subject)
         //{
-        //    subject[MeasurementTypes.Temperature].Should().Be(Units.Kelvin);
+        //    subject[Dimensions.Temperature].Should().Be(Units.Kelvin);
         //}
 
         //[Theory(DisplayName = "SI:LuminousIntensity"), AutoMoqData]
         //public void SiLuminousIntensity(SiSystem subject)
         //{
-        //    subject[MeasurementTypes.LuminousIntensity].Should().Be(Units.Candelas);
+        //    subject[Dimensions.LuminousIntensity].Should().Be(Units.Candelas);
         //}
 
         //[Theory(DisplayName = "SI:Quantity"), AutoMoqData]
         //public void SiQuantity(SiSystem subject)
         //{
-        //    subject[MeasurementTypes.Quantity].Should().Be(Units.Moles);
+        //    subject[Dimensions.Quantity].Should().Be(Units.Moles);
         //}
     }
 }
