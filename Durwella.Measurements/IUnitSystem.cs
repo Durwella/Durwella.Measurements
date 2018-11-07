@@ -6,10 +6,10 @@
     public interface IUnitSystem
     {
         /// <summary>
-        /// Get the Unit System's standard <see cref="Measurement"/> 
+        /// Get the Unit System's standard <see cref="UnitOfMeasurement"/> 
         /// for the given <see cref="Dimension"/>.
         /// For example, returns kg for SI[Mass]
         /// </summary>
-        Measurement this[Dimension dimension] { get; }
+        UnitOfMeasurement this[Dimension dimension] { get; }
     }
 }

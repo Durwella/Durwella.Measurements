@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unit = Measurements.Measurement;
+using Unit = Measurements.UnitOfMeasurement;
 
 namespace Measurements
 {

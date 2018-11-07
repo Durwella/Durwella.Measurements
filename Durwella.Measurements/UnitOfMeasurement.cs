@@ -2,26 +2,30 @@
 
 namespace Measurements
 {
-    public class Measurement
+    /// <summary>
+    /// A Unit of Measurement, this is, what is commonly referred to as a Unit.
+    /// Examples include Meters, Feet, Seconds, Kilograms, ...
+    /// </summary>
+    public class UnitOfMeasurement
     {
         private string _name;
         private Dimension _dimension;
         private double _multipleOfSI = 1.0;
 
-        public Measurement(string name, Dimension dimension)
+        public UnitOfMeasurement(string name, Dimension dimension)
         {
             _name = name;
             _dimension = dimension;
         }
 
-        public Measurement(string name, Measurement unit)
+        public UnitOfMeasurement(string name, UnitOfMeasurement unit)
         {
             _name = name;
             _dimension = unit._dimension;
             _multipleOfSI = unit._multipleOfSI;
         }
 
-        private Measurement(Measurement unit) : this(unit._name, unit)
+        private UnitOfMeasurement(UnitOfMeasurement unit) : this(unit._name, unit)
         {
         }
 
@@ -52,7 +56,7 @@ namespace Measurements
             }
         }
 
-        private static void checkDimensions(Measurement m1, Measurement m2)
+        private static void checkDimensions(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             var dimension1 = m1._dimension;
             var dimension2 = m2._dimension;
@@ -62,7 +66,7 @@ namespace Measurements
             }
         }
 
-        public double ValueInUnits(Measurement unit)
+        public double ValueInUnits(UnitOfMeasurement unit)
         {
             checkDimensions(this, unit);
 
@@ -74,7 +78,7 @@ namespace Measurements
             return $"{Name} ({Dimension})";
         }
 
-        public string ToString(string format = "", Measurement unit = null)
+        public string ToString(string format = "", UnitOfMeasurement unit = null)
         {
             if (String.IsNullOrEmpty(format)) format = "{0:0.00} {1}";
             if (unit == null) unit = Dimension.DefaultUnit;
@@ -89,7 +93,7 @@ namespace Measurements
             }
         }
 
-        public string ToString(Measurement unit)
+        public string ToString(UnitOfMeasurement unit)
         {
             return ToString("", unit);
         }
@@ -99,9 +103,9 @@ namespace Measurements
             return Dimension.ToSIUnitString();
         }
 
-        public static Measurement operator *(Measurement m1, Measurement m2)
+        public static UnitOfMeasurement operator *(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
-            var newMeasurement = new Measurement(m2);
+            var newMeasurement = new UnitOfMeasurement(m2);
             newMeasurement._multipleOfSI = m1._multipleOfSI * m2._multipleOfSI;
             newMeasurement._dimension = m1._dimension * m2._dimension;
             newMeasurement._name = m1._name + " " + m2._name;
@@ -109,21 +113,21 @@ namespace Measurements
             return newMeasurement;
         }
 
-        public static Measurement operator *(double n, Measurement meeas)
+        public static UnitOfMeasurement operator *(double n, UnitOfMeasurement meeas)
         {
-            var newUnit = new Measurement(meeas);
+            var newUnit = new UnitOfMeasurement(meeas);
             newUnit._multipleOfSI *= n;
             newUnit._name = "";
 
             return newUnit;
         }
 
-        public static Measurement operator *(Measurement meas, double n)
+        public static UnitOfMeasurement operator *(UnitOfMeasurement unit, double n)
         {
-            return n * meas;
+            return n * unit;
         }
 
-        public static Measurement operator /(Measurement m1, Measurement m2)
+        public static UnitOfMeasurement operator /(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             var newUnit = m1 * m2.Inverse();
             newUnit._name = m1._name + "/" + m2._name;
@@ -131,39 +135,39 @@ namespace Measurements
             return newUnit;
         }
 
-        public static Measurement operator /(double n, Measurement meas)
+        public static UnitOfMeasurement operator /(double n, UnitOfMeasurement unit)
         {
-            return n * meas.Inverse();
+            return n * unit.Inverse();
         }
 
-        public static Measurement operator /(Measurement meas, double n)
+        public static UnitOfMeasurement operator /(UnitOfMeasurement unit, double n)
         {
-            return (1.0 / n) * meas;
+            return (1.0 / n) * unit;
         }
 
-        public static Measurement operator +(Measurement m1, Measurement m2)
+        public static UnitOfMeasurement operator +(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             checkDimensions(m1, m2);
 
-            var newUnit = new Measurement(m1);
+            var newUnit = new UnitOfMeasurement(m1);
             newUnit._multipleOfSI = m1._multipleOfSI + m2._multipleOfSI;
 
             return newUnit;
         }
-        public static Measurement operator -(Measurement m1, Measurement m2)
+        public static UnitOfMeasurement operator -(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             checkDimensions(m1, m2);
 
-            var newUnit = new Measurement(m1);
+            var newUnit = new UnitOfMeasurement(m1);
             newUnit._multipleOfSI = m1._multipleOfSI - m2._multipleOfSI;
 
             return newUnit;
         }
 
 
-        protected Measurement Inverse()
+        protected UnitOfMeasurement Inverse()
         {
-            var newUnit = new Measurement(this);
+            var newUnit = new UnitOfMeasurement(this);
 
             newUnit._name = "1/(" + newUnit._name + ")";
             newUnit._multipleOfSI = 1.0 / this._multipleOfSI;

@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
 using System;
 using Xunit;
-using Unit = Measurements.Measurement;
+using Unit = Measurements.UnitOfMeasurement;
 
 namespace Measurements
 {
-    public class UnitTest
+    public class UnitOfMeasurementTest
     {
         [Fact]
         public void SimpleToSIValue()

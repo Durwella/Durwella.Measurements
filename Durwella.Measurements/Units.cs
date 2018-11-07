@@ -1,7 +1,10 @@
-﻿using Unit = Measurements.Measurement;
+﻿using Unit = Measurements.UnitOfMeasurement;
 
 namespace Measurements
 {
+    /// <summary>
+    /// Commonly defined Units of Measurement
+    /// </summary>
     public static class Units
     {
         // Length
