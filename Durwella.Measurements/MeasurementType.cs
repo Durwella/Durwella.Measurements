@@ -25,14 +25,14 @@ namespace Measurements
             MeasurementTypes.CompoundTypes.Add(type, this);
         }
 
-        private MeasurementType(Combinable<MeasurementType> combinable)
+        private MeasurementType(RationalCombination<MeasurementType> combinable)
         {
             _baseTypes = combinable;
             _defaultUnit = null;
         }
 
 
-        internal Combinable<MeasurementType> _baseTypes = new Combinable<MeasurementType>(new List<MeasurementType>(), new List<MeasurementType>());
+        internal RationalCombination<MeasurementType> _baseTypes = new RationalCombination<MeasurementType>(new List<MeasurementType>(), new List<MeasurementType>());
 
         public Unit NewSIUnit(string name)
         {
@@ -40,7 +40,7 @@ namespace Measurements
             return _defaultUnit;
         }
 
-        internal Combinable<MeasurementType> CombineWith(MeasurementType t2)
+        internal RationalCombination<MeasurementType> CombineWith(MeasurementType t2)
         {
             List<MeasurementType> numerator = this._baseTypes.Numerator.Concat(t2._baseTypes.Numerator).OrderBy(u => u.Name).ToList();
             List<MeasurementType> denominator = this._baseTypes.Denominator.Concat(t2._baseTypes.Denominator).OrderBy(u => u.Name).ToList();
@@ -66,7 +66,7 @@ namespace Measurements
                 i--;
             }
 
-            return new Combinable<MeasurementType>(numerator, denominator);
+            return new RationalCombination<MeasurementType>(numerator, denominator);
         }
 
         public Unit DefaultUnit { get { return _defaultUnit; } }
@@ -103,7 +103,7 @@ namespace Measurements
         public MeasurementType Inverse()
         {
             var newType = new MeasurementType(this.Name); ;
-            newType._baseTypes = new Combinable<MeasurementType>(this._baseTypes.Denominator, this._baseTypes.Numerator);
+            newType._baseTypes = new RationalCombination<MeasurementType>(this._baseTypes.Denominator, this._baseTypes.Numerator);
 
             return newType;
         }
@@ -135,39 +135,4 @@ namespace Measurements
             }
         }
     }
-
-    internal class Combinable<T>
-    {
-        public IEnumerable<T> Numerator = new List<T>();
-        public IEnumerable<T> Denominator = new List<T>();
-
-        public Combinable(IEnumerable<T> numerator, IEnumerable<T> denominator)
-        {
-            Numerator = numerator;
-            Denominator = denominator;
-        }
-
-        public override bool Equals(object obj)
-        {
-            // TODO: Improve testing of this
-            var other = obj as Combinable<T>;
-            if (other == null) return false;
-
-            return this.Numerator.SequenceEqual(other.Numerator) && this.Denominator.SequenceEqual(other.Denominator);
-        }
-
-        public override int GetHashCode()
-        {
-            var hash = 17;
-            foreach (var c in Numerator)
-            {
-                hash = 23 * hash + c.GetHashCode();
-            }
-            foreach (var c in Denominator)
-            {
-                hash = 23 * hash + c.GetHashCode();
-            }
-            return hash;
-        }
-    };
 }
