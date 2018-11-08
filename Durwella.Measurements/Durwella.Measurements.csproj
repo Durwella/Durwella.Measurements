@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Durwella.Measurements</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
     <Authors>Neal Miller, Jacob Foshee, Durwella LLC</Authors>
     <Description>Utilities for using measurements with units.</Description>
     <Copyright>Copyright 2018 (c) Durwella. All rights reserved.</Copyright>
@@ -11,6 +10,8 @@
     <PackageProjectUrl>https://github.com/Durwella/Durwella.Measurements</PackageProjectUrl>
     <Title>Durwella Measurements</Title>
     <Company>Durwella LLC</Company>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
   </PropertyGroup>
 
 </Project>

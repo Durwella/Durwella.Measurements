@@ -1,7 +1,6 @@
 # Durwella.Measurements
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Build status](https://ci.appveyor.com/api/projects/status/62xekqq2gpg9kkjm?svg=true)](https://ci.appveyor.com/project/wlmiller/durwella-measurements)
 [![NuGet](https://img.shields.io/nuget/v/Durwella.Measurements.svg)](https://www.nuget.org/packages/Durwella.Measurements/)
 
 Utilities for using measurements with units.  Measurement dimensions are easily constructed from existing dimensions, and new dimensions of measurements with new units can be added.  Dimensions are tracked through operations - e.g. a length divided by a time yields a velocity.
