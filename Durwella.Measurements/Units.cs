@@ -58,7 +58,7 @@ namespace Measurements
         public static Unit KilogramsPerCubicMeter = Dimensions.Density.NewSiUnit("kg/m3");
 
         // Frequency
-        public static Unit Hertz = Dimensions.Mass.NewSiUnit("Hz");
+        public static Unit Hertz = Dimensions.Frequency.NewSiUnit("Hz");
 
         // Velocity
         public static Unit MetersPerSecond = Dimensions.Velocity.NewSiUnit("m/s");
