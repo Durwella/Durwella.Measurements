@@ -27,7 +27,7 @@ namespace Measurements
         {
             Units.Ounces,
             Units.PoundsMass,
-            Units.Slug,
+            Units.Slugs,
             Units.ShortTons,
         };
 

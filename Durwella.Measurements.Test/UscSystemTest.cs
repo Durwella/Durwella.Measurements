@@ -53,7 +53,7 @@ namespace Measurements
         public void EnumerateUnitsForMass(UscSystem subject)
         {
             subject.GetUnits(Dimensions.Mass).Should().BeEquivalentTo(
-                Units.PoundsMass, Units.Ounces, Units.Slug, Units.ShortTons);
+                Units.PoundsMass, Units.Ounces, Units.Slugs, Units.ShortTons);
         }
 
         [Theory(DisplayName = "USCS:Time Units"), AutoMoqData]

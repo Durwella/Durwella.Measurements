@@ -45,7 +45,7 @@ namespace Measurements
         /// <summary>
         /// A slug is defined as the mass that is accelerated by 1 ft/s2 when a force of one pound (lbf) is exerted on it.
         /// </summary>
-        public static Unit Slug = new Unit("slug", 32.1740 * PoundsMass);
+        public static Unit Slugs = new Unit("slug", 32.1740 * PoundsMass);
 
         // Area
         public static Unit SquareMeters = Dimensions.Area.NewSiUnit("m2");
@@ -73,5 +73,24 @@ namespace Measurements
         // Pressure
         public static Unit Pascals = Dimensions.Pressure.NewSiUnit("Pa");
         public static Unit PoundsPerSquareInch = new Unit("psi", PoundsForce / SquareInches);
+
+        internal static Unit[] PredefinedUnits = new[]
+        {
+            Meters,Centimeters,Millimeters,Kilometers,
+            Feet,Inches,Yards,Miles,
+            Seconds,Minutes,Hours,
+            Kilograms,Grams,
+            PoundsMass,ShortTons,Ounces,Slugs,
+            SquareMeters,SquareInches,
+            CubicMeters,
+            KilogramsPerCubicMeter,
+            Hertz,
+            MetersPerSecond,
+            MetersPerSecondSquared,
+            Newtons,
+            PoundsForce,
+            Pascals,
+            PoundsPerSquareInch
+        };
     }
 }
