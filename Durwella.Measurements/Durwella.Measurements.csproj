@@ -10,8 +10,8 @@
     <PackageProjectUrl>https://github.com/Durwella/Durwella.Measurements</PackageProjectUrl>
     <Title>Durwella Measurements</Title>
     <Company>Durwella LLC</Company>
-    <Version>2.0.0</Version>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Version>2.0.1</Version>
+    <AssemblyVersion>2.0.1.0</AssemblyVersion>
   </PropertyGroup>
 
 </Project>
