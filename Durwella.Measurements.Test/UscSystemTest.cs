@@ -27,5 +27,32 @@ namespace Measurements
             subject[Dimensions.Time].Should().Be(Units.Seconds);
             subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
+
+        [Theory(DisplayName = "USCS:Length Units"), AutoMoqData]
+        public void EnumerateUnitsForLength(UscSystem subject)
+        {
+            subject.GetUnits(Dimensions.Length).Should().BeEquivalentTo(
+                Units.Feet, Units.Inches, Units.Yards, Units.Miles);
+        }
+
+        [Theory(DisplayName = "USCS:Mass Units"), AutoMoqData]
+        public void EnumerateUnitsForMass(UscSystem subject)
+        {
+            subject.GetUnits(Dimensions.Mass).Should().BeEquivalentTo(
+                Units.PoundsMass, Units.Ounces, Units.Slug, Units.ShortTons);
+        }
+
+        [Theory(DisplayName = "USCS:Mass Units"), AutoMoqData]
+        public void EnumerateUnitsForTime(UscSystem subject)
+        {
+            subject.GetUnits(Dimensions.Time).Should().BeEquivalentTo(
+                Units.Hours, Units.Minutes, Units.Seconds);
+        }
+
+        [Fact(DisplayName = "USCS:SI Definitions")]
+        public void MeetStandardSiDefinitions()
+        {
+            Units.Ounces.ValueInUnits(Units.Grams).Should().BeApproximately(28.3, 0.05);
+        }
     }
 }

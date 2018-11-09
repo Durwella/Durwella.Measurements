@@ -1,4 +1,6 @@
-﻿namespace Measurements
+﻿using System.Collections.Generic;
+
+namespace Measurements
 {
     /// <summary>
     /// A System of Measure such as SI or US Customary
@@ -11,5 +13,10 @@
         /// For example, returns kg for SI[Mass]
         /// </summary>
         UnitOfMeasurement this[Dimension dimension] { get; }
+
+        /// <summary>
+        /// Returns a set of available units in this System for the given Dimension
+        /// </summary>
+        IEnumerable<UnitOfMeasurement> GetUnits(Dimension dimension);
     }
 }

@@ -16,5 +16,10 @@ namespace Measurements
 
         public UnitOfMeasurement this[Dimension dimension] =>
             _baseDimensions[dimension];
+
+        public IEnumerable<UnitOfMeasurement> GetUnits(Dimension dimension)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
