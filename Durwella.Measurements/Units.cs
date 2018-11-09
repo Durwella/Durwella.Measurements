@@ -21,6 +21,7 @@ namespace Measurements
         public static Unit Seconds = Dimensions.Time.NewSIUnit("s");
         public static Unit Minutes = new Unit("min", Seconds * 60.0);
         public static Unit Hours = new Unit("hr", Minutes * 60.0);
+        internal static Unit[] OfTime = new[] { Seconds, Minutes, Hours };
 
         // Mass
         public static Unit Kilograms = Dimensions.Mass.NewSIUnit("kg");

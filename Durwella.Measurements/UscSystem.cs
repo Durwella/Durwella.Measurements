@@ -31,13 +31,6 @@ namespace Measurements
             Units.ShortTons,
         };
 
-        private readonly UnitOfMeasurement[] _timeUnits = new[]
-        {
-            Units.Seconds,
-            Units.Minutes,
-            Units.Hours,
-        };
-
         public UnitOfMeasurement this[Dimension dimension] =>
             _baseDimensions[dimension];
 
@@ -48,7 +41,7 @@ namespace Measurements
             if (dimension == Dimensions.Mass)
                 return _massUnits;
             if (dimension == Dimensions.Time)
-                return _timeUnits;
+                return Units.OfTime;
             throw new KeyNotFoundException(dimension.Name);
         }
     }

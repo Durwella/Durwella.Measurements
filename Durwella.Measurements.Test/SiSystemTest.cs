@@ -51,5 +51,41 @@ namespace Measurements
         //{
         //    subject[Dimensions.Quantity].Should().Be(Units.Moles);
         //}
+
+        #region GetUnits() enumeration
+        [Theory(DisplayName = "SI:Units Enumeration"), AutoMoqData]
+        public void EnumeratedUnitsMatchDimension(SiSystem subject)
+        {
+            foreach (var dimension in Dimensions.Basic)
+            {
+                foreach (var unit in subject.GetUnits(dimension))
+                {
+                    unit.Dimension.Should().Be(dimension);
+                }
+            }
+        }
+
+        [Theory(DisplayName = "SI:Length Units"), AutoMoqData]
+        public void EnumerateUnitsForLength(SiSystem subject)
+        {
+            subject.GetUnits(Dimensions.Length).Should().BeEquivalentTo(
+                Units.Millimeters, Units.Centimeters, Units.Meters, Units.Kilometers);
+        }
+
+        [Theory(DisplayName = "SI:Mass Units"), AutoMoqData]
+        public void EnumerateUnitsForMass(SiSystem subject)
+        {
+            subject.GetUnits(Dimensions.Mass).Should().BeEquivalentTo(
+                Units.Grams, Units.Kilograms);
+        }
+
+        [Theory(DisplayName = "SI:Time Units"), AutoMoqData]
+        public void EnumerateUnitsForTime(SiSystem subject)
+        {
+            subject.GetUnits(Dimensions.Time).Should().BeEquivalentTo(
+                Units.Hours, Units.Minutes, Units.Seconds);
+        }
+
+        #endregion
     }
 }

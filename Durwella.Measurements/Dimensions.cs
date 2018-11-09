@@ -23,6 +23,7 @@ namespace Measurements
         public static Dimension Length = new Dimension("Length");
         public static Dimension Time = new Dimension("Time");
         public static Dimension Mass = new Dimension("Mass");
+        public static Dimension[] Basic = new[] { Length, Time, Mass };
 
         // Derived / Composite / Compound Physical Dimensions
         public static Dimension Area = new Dimension("Area", Length * Length);
