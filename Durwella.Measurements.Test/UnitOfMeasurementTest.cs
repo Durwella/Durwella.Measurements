@@ -7,19 +7,19 @@ namespace Measurements
 {
     public class UnitOfMeasurementTest
     {
-        [Fact]
+        [Fact(DisplayName = "ValueInSIUnits: 1 ft = .3048 m")]
         public void SimpleToSIValue()
         {
             (1.0 * Units.Feet).ValueInSIUnits.Should().BeApproximately(0.3048, 0.0001);
         }
 
-        [Fact]
+        [Fact(DisplayName = "ValueInUnits: 1 m = 3.2808 ft")]
         public void SimpleFromSIValue()
         {
             (1.0 * Units.Meters).ValueInUnits(Units.Feet).Should().BeApproximately(3.2808, 0.0001);
         }
 
-        [Fact]
+        [Fact(DisplayName = "ValueInSIUnits: 60 mph = 26.8224 m/s")]
         public void CompoundUnitToSIValueTest()
         {
             var milesPerHour = new Unit("mph", Units.Miles / Units.Hours);
@@ -27,7 +27,7 @@ namespace Measurements
             (60.0 * milesPerHour).ValueInSIUnits.Should().BeApproximately(26.8224, 0.0001);
         }
 
-        [Fact]
+        [Fact(DisplayName = "ValueInUnits: 10 m/s = 22.3694 mph")]
         public void CompoundUnitFromSIValueTest()
         {
             var metersPerSecond = Units.MetersPerSecond;
@@ -36,7 +36,7 @@ namespace Measurements
             (10.0 * metersPerSecond).ValueInUnits(milesPerHour).Should().BeApproximately(22.3694, 0.0001);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Example: Hydrostatic Pressure")]
         public void HydrostaticPressureExample()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
@@ -46,13 +46,13 @@ namespace Measurements
             (rho * g * h).ValueInUnits(Units.PoundsPerSquareInch).Should().BeApproximately(4335.27504, 0.01);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Scalar * Unit Dimension")]
         public void SimpleMatchingDimensionTest()
         {
             (1.0 * Units.Meters).Dimension.Should().Be(Dimensions.Length);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Unit * Unit Dimension")]
         public void PressureDimensionTest()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
@@ -62,7 +62,7 @@ namespace Measurements
             (rho * g * h).Dimension.Should().Be(Dimensions.Pressure);
         }
 
-        [Fact]
+        [Fact(DisplayName = "ToString Format Pressure")]
         public void ToStringTest()
         {
             var g = 9.80665 * Units.MetersPerSecondSquared;
@@ -72,19 +72,19 @@ namespace Measurements
             (1.23456 * Units.PoundsPerSquareInch).ToString("p = {0:0.000} {1}", Units.PoundsPerSquareInch).Should().Be("p = 1.235 psi");
         }
 
-        [Fact]
+        [Fact(DisplayName = "1 m/s + 1 mph = 1.447 m/s")]
         public void AdditionTest()
         {
             (1.0 * Units.MetersPerSecond + 1.0 * (Units.Miles / Units.Hours)).ValueInSIUnits.Should().BeApproximately(1.4470, 0.0001);
         }
 
-        [Fact]
+        [Fact(DisplayName = "1 m/s - 1 mph = 0.553 m/s")]
         public void SubtractionTest()
         {
             (1.0 * Units.MetersPerSecond - 1.0 * (Units.Miles / Units.Hours)).ValueInSIUnits.Should().BeApproximately(0.55296, 0.0001);
         }
 
-        [Fact]
+        [Fact(DisplayName = "Exception: ValueInUnits: m => m/s")]
         public void DisallowConversionBetweenDifferentDimensions()
         {
             var threw = false;
@@ -100,7 +100,7 @@ namespace Measurements
             threw.Should().BeTrue();
         }
 
-        [Fact]
+        [Fact(DisplayName = "Exception: m + m/s")]
         public void DisallowAddingDifferentDimensions()
         {
             var threw = false;
@@ -115,7 +115,7 @@ namespace Measurements
             threw.Should().BeTrue();
         }
 
-        [Fact]
+        [Fact(DisplayName = "Exception: m - m/s")]
         public void DisallowSubtractingDifferentDimensions()
         {
             var threw = true;
@@ -130,7 +130,7 @@ namespace Measurements
             threw.Should().BeTrue();
         }
 
-        [Fact]
+        [Fact(DisplayName = "Example: Cookies")]
         public void DocumentationExample()
         {
             var cookieCount = new Dimension("Cookie Count");

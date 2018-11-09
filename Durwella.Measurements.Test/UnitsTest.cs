@@ -5,7 +5,7 @@ namespace Measurements
 {
     public class UnitsTest
     {
-        [Fact]
+        [Fact(DisplayName = "km")]
         public void Kilometers()
         {
             var fiveK = 5.0 * Units.Kilometers;
@@ -14,7 +14,7 @@ namespace Measurements
             //(1.0 * Units.Kilometers).Should().Be(1000.0 * Units.Meters);
         }
 
-        [Fact]
+        [Fact(DisplayName = "cm")]
         public void Centimeters()
         {
             var cm = Units.Centimeters;
@@ -23,7 +23,7 @@ namespace Measurements
             (5 * cm).ToString(cm).Should().Be("5.00 cm");
         }
 
-        [Fact]
+        [Fact(DisplayName = "mm")]
         public void Millimeters()
         {
             var mm = Units.Millimeters;

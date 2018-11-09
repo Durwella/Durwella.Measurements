@@ -28,6 +28,20 @@ namespace Measurements
             subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
 
+        #region GetUnits() enumeration
+
+        [Theory(DisplayName = "USCS:Units Enumeration"), AutoMoqData]
+        public void EnumeratedUnitsMatchDimension(UscSystem subject)
+        {
+            foreach (var dimension in Dimensions.Basic)
+            {
+                foreach (var unit in subject.GetUnits(dimension))
+                {
+                    unit.Dimension.Should().Be(dimension);
+                }
+            }
+        }
+
         [Theory(DisplayName = "USCS:Length Units"), AutoMoqData]
         public void EnumerateUnitsForLength(UscSystem subject)
         {
@@ -54,5 +68,7 @@ namespace Measurements
         {
             Units.Ounces.ValueInUnits(Units.Grams).Should().BeApproximately(28.3, 0.05);
         }
+
+        #endregion
     }
 }

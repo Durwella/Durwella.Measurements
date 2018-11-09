@@ -5,8 +5,20 @@ namespace Measurements.Test
 {
     public class DimensionTest
     {
-        [Fact]
-        public void RetrieveBaseDimensions()
+        [Fact(DisplayName = "Length != Valocity")]
+        public void SimpleNonMatchingDimensionTest()
+        {
+            Dimensions.Length.Should().NotBe(Dimensions.Velocity);
+        }
+
+        [Fact(DisplayName = "Length/Time = Velocity")]
+        public void MoreComplicatedDimensionTest()
+        {
+            (Dimensions.Length / Dimensions.Time).Should().Be(Dimensions.Velocity);
+        }
+
+        [Fact(DisplayName = "B * A/B = A")]
+        public void CancelDimensionInRational()
         {
             var baseDimensionA = new Dimension("Base Dimension A");
             baseDimensionA.NewSIUnit("Unit A");
@@ -17,18 +29,6 @@ namespace Measurements.Test
             var compoundDimension = new Dimension("Compound Dimension", baseDimensionA / baseDimensionB);
 
             (compoundDimension * baseDimensionB).Should().Be(baseDimensionA);
-        }
-
-        [Fact]
-        public void SimpleNonMatchingDimensionTest()
-        {
-            Dimensions.Length.Should().NotBe(Dimensions.Velocity);
-        }
-
-        [Fact]
-        public void MoreComplicatedDimensionTest()
-        {
-            (Dimensions.Length / Dimensions.Time).Should().Be(Dimensions.Velocity);
         }
     }
 }
