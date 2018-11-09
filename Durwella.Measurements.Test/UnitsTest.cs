@@ -9,7 +9,7 @@ namespace Measurements
         public void Kilometers()
         {
             var fiveK = 5.0 * Units.Kilometers;
-            fiveK.ToString(Units.Kilometers).Should().Be("5.00 k");
+            fiveK.ToString(Units.Kilometers).Should().Be("5.00 km");
             fiveK.ValueInUnits(Units.Meters).Should().Be(5000);
             //(1.0 * Units.Kilometers).Should().Be(1000.0 * Units.Meters);
         }

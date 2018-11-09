@@ -11,7 +11,7 @@ namespace Measurements
         public static Unit Meters = Dimensions.Length.NewSiUnit("m");
         public static Unit Centimeters = new Unit("cm", Meters / 100);
         public static Unit Millimeters = new Unit("mm", Meters / 1000);
-        public static Unit Kilometers = new Unit("k", 1000 * Meters);
+        public static Unit Kilometers = new Unit("km", 1000 * Meters);
         public static Unit Feet = new Unit("ft", 0.3048 * Meters);
         public static Unit Inches = new Unit("in", Feet / 12.0);
         public static Unit Yards = new Unit("yd", Feet * 3.0);
@@ -52,7 +52,7 @@ namespace Measurements
         public static Unit SquareInches = new Unit("in2", Inches * Inches);
 
         // Volume
-        public static Unit CubicMeters = Dimensions.Area.NewSiUnit("m3");
+        public static Unit CubicMeters = Dimensions.Volume.NewSiUnit("m3");
 
         // Density
         public static Unit KilogramsPerCubicMeter = Dimensions.Density.NewSiUnit("kg/m3");
