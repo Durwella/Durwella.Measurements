@@ -16,7 +16,7 @@ namespace Measurements
 
         public string GetKey(UnitOfMeasurement unit)
         {
-            if (ReferenceEquals(unit, null))
+            if (unit is null)
                 throw new ArgumentNullException(nameof(unit));
             return string.Join(Separator.ToString(), MagicPrefix, unit.Dimension.Name, unit.Abbreviation);
         }
@@ -26,7 +26,7 @@ namespace Measurements
         /// </summary>
         public UnitOfMeasurement GetUnit(string key)
         {
-            if (ReferenceEquals(key, null))
+            if (key is null)
                 throw new ArgumentNullException(nameof(key));
             var tokens = key.Split(Separator);
             var magicPrefix = tokens.FirstOrDefault();
