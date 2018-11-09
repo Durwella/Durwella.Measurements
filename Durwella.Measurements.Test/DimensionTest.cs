@@ -5,7 +5,7 @@ namespace Measurements.Test
 {
     public class DimensionTest
     {
-        [Fact(DisplayName = "Length != Valocity")]
+        [Fact(DisplayName = "Length != Velocity")]
         public void SimpleNonMatchingDimensionTest()
         {
             Dimensions.Length.Should().NotBe(Dimensions.Velocity);
