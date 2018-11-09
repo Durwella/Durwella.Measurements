@@ -21,10 +21,10 @@ namespace Measurements.Test
         public void CancelDimensionInRational()
         {
             var baseDimensionA = new Dimension("Base Dimension A");
-            baseDimensionA.NewSIUnit("Unit A");
+            baseDimensionA.NewSiUnit("Unit A");
 
             var baseDimensionB = new Dimension("Base Dimension B");
-            baseDimensionB.NewSIUnit("Unit B");
+            baseDimensionB.NewSiUnit("Unit B");
 
             var compoundDimension = new Dimension("Compound Dimension", baseDimensionA / baseDimensionB);
 

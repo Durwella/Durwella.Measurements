@@ -10,7 +10,7 @@ namespace Measurements
     {
         private string _abbreviation;
         private Dimension _dimension;
-        private double _multipleOfSI = 1.0;
+        private double _multipleOfSi = 1.0;
 
         public UnitOfMeasurement(string abbreviation, Dimension dimension)
         {
@@ -22,7 +22,7 @@ namespace Measurements
         {
             _abbreviation = abbreviation;
             _dimension = unit._dimension;
-            _multipleOfSI = unit._multipleOfSI;
+            _multipleOfSi = unit._multipleOfSi;
         }
 
         private UnitOfMeasurement(UnitOfMeasurement unit) : this(unit._abbreviation, unit)
@@ -47,7 +47,7 @@ namespace Measurements
             }
         }
 
-        public double ValueInSIUnits => _multipleOfSI;
+        public double ValueInSiUnits => _multipleOfSi;
 
         private static void CheckDimensions(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
@@ -63,7 +63,7 @@ namespace Measurements
         {
             CheckDimensions(this, unit);
 
-            return _multipleOfSI / unit._multipleOfSI;
+            return _multipleOfSi / unit._multipleOfSi;
         }
 
         public override string ToString()
@@ -78,7 +78,7 @@ namespace Measurements
 
             if (unit == null)
             {
-                return String.Format(format, ValueInSIUnits, this.ToSIUnitString());
+                return String.Format(format, ValueInSiUnits, this.ToSiUnitString());
             }
             else
             {
@@ -91,16 +91,16 @@ namespace Measurements
             return ToString("", unit);
         }
 
-        public string ToSIUnitString()
+        public string ToSiUnitString()
         {
-            return Dimension.ToSIUnitString();
+            return Dimension.ToSiUnitString();
         }
 
         public static UnitOfMeasurement operator *(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             return new UnitOfMeasurement(m2)
             {
-                _multipleOfSI = m1._multipleOfSI * m2._multipleOfSI,
+                _multipleOfSi = m1._multipleOfSi * m2._multipleOfSi,
                 _dimension = m1._dimension * m2._dimension,
                 _abbreviation = m1._abbreviation + " " + m2._abbreviation
             };
@@ -112,7 +112,7 @@ namespace Measurements
             {
                 _abbreviation = ""
             };
-            newUnit._multipleOfSI *= n;
+            newUnit._multipleOfSi *= n;
             return newUnit;
         }
 
@@ -143,7 +143,7 @@ namespace Measurements
             CheckDimensions(m1, m2);
 
             var newUnit = new UnitOfMeasurement(m1);
-            newUnit._multipleOfSI = m1._multipleOfSI + m2._multipleOfSI;
+            newUnit._multipleOfSi = m1._multipleOfSi + m2._multipleOfSi;
 
             return newUnit;
         }
@@ -153,7 +153,7 @@ namespace Measurements
             CheckDimensions(m1, m2);
 
             var newUnit = new UnitOfMeasurement(m1);
-            newUnit._multipleOfSI = m1._multipleOfSI - m2._multipleOfSI;
+            newUnit._multipleOfSi = m1._multipleOfSi - m2._multipleOfSi;
 
             return newUnit;
         }
@@ -164,7 +164,7 @@ namespace Measurements
             var newUnit = new UnitOfMeasurement(this);
 
             newUnit._abbreviation = "1/(" + newUnit._abbreviation + ")";
-            newUnit._multipleOfSI = 1.0 / _multipleOfSI;
+            newUnit._multipleOfSi = 1.0 / _multipleOfSi;
             newUnit._dimension = _dimension.Inverse();
 
             return newUnit;

@@ -7,28 +7,28 @@ namespace Measurements
 {
     public class UnitOfMeasurementTest
     {
-        [Fact(DisplayName = "ValueInSIUnits: 1 ft = .3048 m")]
-        public void SimpleToSIValue()
+        [Fact(DisplayName = "ValueInSiUnits: 1 ft = .3048 m")]
+        public void SimpleToSiValue()
         {
-            (1.0 * Units.Feet).ValueInSIUnits.Should().BeApproximately(0.3048, 0.0001);
+            (1.0 * Units.Feet).ValueInSiUnits.Should().BeApproximately(0.3048, 0.0001);
         }
 
         [Fact(DisplayName = "ValueInUnits: 1 m = 3.2808 ft")]
-        public void SimpleFromSIValue()
+        public void SimpleFromSiValue()
         {
             (1.0 * Units.Meters).ValueInUnits(Units.Feet).Should().BeApproximately(3.2808, 0.0001);
         }
 
-        [Fact(DisplayName = "ValueInSIUnits: 60 mph = 26.8224 m/s")]
-        public void CompoundUnitToSIValueTest()
+        [Fact(DisplayName = "ValueInSiUnits: 60 mph = 26.8224 m/s")]
+        public void CompoundUnitToSiValueTest()
         {
             var milesPerHour = new Unit("mph", Units.Miles / Units.Hours);
 
-            (60.0 * milesPerHour).ValueInSIUnits.Should().BeApproximately(26.8224, 0.0001);
+            (60.0 * milesPerHour).ValueInSiUnits.Should().BeApproximately(26.8224, 0.0001);
         }
 
         [Fact(DisplayName = "ValueInUnits: 10 m/s = 22.3694 mph")]
-        public void CompoundUnitFromSIValueTest()
+        public void CompoundUnitFromSiValueTest()
         {
             var metersPerSecond = Units.MetersPerSecond;
             var milesPerHour = new Unit("mph", Units.Miles / Units.Hours);
@@ -75,13 +75,13 @@ namespace Measurements
         [Fact(DisplayName = "1 m/s + 1 mph = 1.447 m/s")]
         public void AdditionTest()
         {
-            (1.0 * Units.MetersPerSecond + 1.0 * (Units.Miles / Units.Hours)).ValueInSIUnits.Should().BeApproximately(1.4470, 0.0001);
+            (1.0 * Units.MetersPerSecond + 1.0 * (Units.Miles / Units.Hours)).ValueInSiUnits.Should().BeApproximately(1.4470, 0.0001);
         }
 
         [Fact(DisplayName = "1 m/s - 1 mph = 0.553 m/s")]
         public void SubtractionTest()
         {
-            (1.0 * Units.MetersPerSecond - 1.0 * (Units.Miles / Units.Hours)).ValueInSIUnits.Should().BeApproximately(0.55296, 0.0001);
+            (1.0 * Units.MetersPerSecond - 1.0 * (Units.Miles / Units.Hours)).ValueInSiUnits.Should().BeApproximately(0.55296, 0.0001);
         }
 
         [Fact(DisplayName = "Exception: ValueInUnits: m => m/s")]
@@ -136,7 +136,7 @@ namespace Measurements
             var cookieCount = new Dimension("Cookie Count");
             var cookieRate = new Dimension("Cookie Rate", cookieCount / Dimensions.Time);
 
-            var cookies = cookieCount.NewSIUnit("cookies");
+            var cookies = cookieCount.NewSiUnit("cookies");
             var dozenCookies = new Unit("dz", 12 * cookies);
             var grossCookies = new Unit("gr", 144 * cookies);
 

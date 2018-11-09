@@ -33,7 +33,7 @@ namespace Measurements
         }
 
 
-        public Unit NewSIUnit(string name)
+        public Unit NewSiUnit(string name)
         {
             _defaultUnit = new Unit(name, this);
             return _defaultUnit;
@@ -72,7 +72,7 @@ namespace Measurements
 
         public string Name { get { return _name; } }
 
-        public string ToSIUnitString()
+        public string ToSiUnitString()
         {
             if (_baseDimensions.Numerator.Count() == 1 && _baseDimensions.Denominator.Count() == 0)
             {
@@ -80,8 +80,8 @@ namespace Measurements
             }
 
             // TODO account for multiple appearances of a unit (e.g. s2 instead of s s)
-            var numeratorStrings = _baseDimensions.Numerator.Select(t => t.ToSIUnitString());
-            var denominatorStrings = _baseDimensions.Denominator.Select(t => t.ToSIUnitString());
+            var numeratorStrings = _baseDimensions.Numerator.Select(t => t.ToSiUnitString());
+            var denominatorStrings = _baseDimensions.Denominator.Select(t => t.ToSiUnitString());
 
             return String.Join(" ", numeratorStrings)
                 + (numeratorStrings.Count() == 0 && denominatorStrings.Count() > 0 ? "1" : "")

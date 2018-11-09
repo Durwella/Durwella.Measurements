@@ -8,7 +8,7 @@ namespace Measurements
     public static class Units
     {
         // Length
-        public static Unit Meters = Dimensions.Length.NewSIUnit("m");
+        public static Unit Meters = Dimensions.Length.NewSiUnit("m");
         public static Unit Centimeters = new Unit("cm", Meters / 100);
         public static Unit Millimeters = new Unit("mm", Meters / 1000);
         public static Unit Kilometers = new Unit("k", 1000 * Meters);
@@ -18,13 +18,13 @@ namespace Measurements
         public static Unit Miles = new Unit("mi", Feet * 5280.0);
 
         // Time
-        public static Unit Seconds = Dimensions.Time.NewSIUnit("s");
+        public static Unit Seconds = Dimensions.Time.NewSiUnit("s");
         public static Unit Minutes = new Unit("min", Seconds * 60.0);
         public static Unit Hours = new Unit("hr", Minutes * 60.0);
         internal static Unit[] OfTime = new[] { Seconds, Minutes, Hours };
 
         // Mass
-        public static Unit Kilograms = Dimensions.Mass.NewSIUnit("kg");
+        public static Unit Kilograms = Dimensions.Mass.NewSiUnit("kg");
         public static Unit Grams = new Unit("g", Kilograms / 1000.0);
 
         /// <summary>
@@ -48,30 +48,30 @@ namespace Measurements
         public static Unit Slug = new Unit("slug", 32.1740 * PoundsMass);
 
         // Area
-        public static Unit SquareMeters = Dimensions.Area.NewSIUnit("m2");
+        public static Unit SquareMeters = Dimensions.Area.NewSiUnit("m2");
         public static Unit SquareInches = new Unit("in2", Inches * Inches);
 
         // Volume
-        public static Unit CubicMeters = Dimensions.Area.NewSIUnit("m3");
+        public static Unit CubicMeters = Dimensions.Area.NewSiUnit("m3");
 
         // Density
-        public static Unit KilogramsPerCubicMeter = Dimensions.Density.NewSIUnit("kg/m3");
+        public static Unit KilogramsPerCubicMeter = Dimensions.Density.NewSiUnit("kg/m3");
 
         // Frequency
-        public static Unit Hertz = Dimensions.Mass.NewSIUnit("Hz");
+        public static Unit Hertz = Dimensions.Mass.NewSiUnit("Hz");
 
         // Velocity
-        public static Unit MetersPerSecond = Dimensions.Velocity.NewSIUnit("m/s");
+        public static Unit MetersPerSecond = Dimensions.Velocity.NewSiUnit("m/s");
 
         // Acceleration
-        public static Unit MetersPerSecondSquared = Dimensions.Acceleration.NewSIUnit("m/s2");
+        public static Unit MetersPerSecondSquared = Dimensions.Acceleration.NewSiUnit("m/s2");
 
         // Force
-        public static Unit Newtons = Dimensions.Force.NewSIUnit("N");
+        public static Unit Newtons = Dimensions.Force.NewSiUnit("N");
         public static Unit PoundsForce = new Unit("lbf", 4.448222 * Newtons);
 
         // Pressure
-        public static Unit Pascals = Dimensions.Pressure.NewSIUnit("Pa");
+        public static Unit Pascals = Dimensions.Pressure.NewSiUnit("Pa");
         public static Unit PoundsPerSquareInch = new Unit("psi", PoundsForce / SquareInches);
     }
 }
