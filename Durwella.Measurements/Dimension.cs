@@ -76,7 +76,7 @@ namespace Measurements
         {
             if (_baseDimensions.Numerator.Count() == 1 && _baseDimensions.Denominator.Count() == 0)
             {
-                return _baseDimensions.Numerator.First().DefaultUnit.Name;
+                return _baseDimensions.Numerator.First().DefaultUnit.Abbreviation;
             }
 
             // TODO account for multiple appearances of a unit (e.g. s2 instead of s s)

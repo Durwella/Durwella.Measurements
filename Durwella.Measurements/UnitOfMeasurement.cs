@@ -8,35 +8,34 @@ namespace Measurements
     /// </summary>
     public class UnitOfMeasurement
     {
-        private string _name;
+        private string _abbreviation;
         private Dimension _dimension;
         private double _multipleOfSI = 1.0;
 
-        public UnitOfMeasurement(string name, Dimension dimension)
+        public UnitOfMeasurement(string abbreviation, Dimension dimension)
         {
-            _name = name;
+            _abbreviation = abbreviation;
             _dimension = dimension;
         }
 
-        public UnitOfMeasurement(string name, UnitOfMeasurement unit)
+        public UnitOfMeasurement(string abbreviation, UnitOfMeasurement unit)
         {
-            _name = name;
+            _abbreviation = abbreviation;
             _dimension = unit._dimension;
             _multipleOfSI = unit._multipleOfSI;
         }
 
-        private UnitOfMeasurement(UnitOfMeasurement unit) : this(unit._name, unit)
+        private UnitOfMeasurement(UnitOfMeasurement unit) : this(unit._abbreviation, unit)
         {
         }
 
-        public string Name { get { return _name; } }
+        public string Abbreviation => _abbreviation;
 
         public Dimension Dimension
         {
             get
             {
-                Dimension compound = null;
-                if (Dimensions.CompoundDimensions.TryGetValue(_dimension, out compound))
+                if (Dimensions.CompoundDimensions.TryGetValue(_dimension, out Dimension compound))
                 {
                     _dimension = compound;
                     return compound;
@@ -48,15 +47,9 @@ namespace Measurements
             }
         }
 
-        public double ValueInSIUnits
-        {
-            get
-            {
-                return _multipleOfSI;
-            }
-        }
+        public double ValueInSIUnits => _multipleOfSI;
 
-        private static void checkDimensions(UnitOfMeasurement m1, UnitOfMeasurement m2)
+        private static void CheckDimensions(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             var dimension1 = m1._dimension;
             var dimension2 = m2._dimension;
@@ -68,14 +61,14 @@ namespace Measurements
 
         public double ValueInUnits(UnitOfMeasurement unit)
         {
-            checkDimensions(this, unit);
+            CheckDimensions(this, unit);
 
             return _multipleOfSI / unit._multipleOfSI;
         }
 
         public override string ToString()
         {
-            return $"{Name} ({Dimension})";
+            return $"{Abbreviation} ({Dimension})";
         }
 
         public string ToString(string format = "", UnitOfMeasurement unit = null)
@@ -89,7 +82,7 @@ namespace Measurements
             }
             else
             {
-                return String.Format(format, ValueInUnits(unit), unit.Name);
+                return String.Format(format, ValueInUnits(unit), unit.Abbreviation);
             }
         }
 
@@ -105,20 +98,21 @@ namespace Measurements
 
         public static UnitOfMeasurement operator *(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
-            var newMeasurement = new UnitOfMeasurement(m2);
-            newMeasurement._multipleOfSI = m1._multipleOfSI * m2._multipleOfSI;
-            newMeasurement._dimension = m1._dimension * m2._dimension;
-            newMeasurement._name = m1._name + " " + m2._name;
-
-            return newMeasurement;
+            return new UnitOfMeasurement(m2)
+            {
+                _multipleOfSI = m1._multipleOfSI * m2._multipleOfSI,
+                _dimension = m1._dimension * m2._dimension,
+                _abbreviation = m1._abbreviation + " " + m2._abbreviation
+            };
         }
 
-        public static UnitOfMeasurement operator *(double n, UnitOfMeasurement meeas)
+        public static UnitOfMeasurement operator *(double n, UnitOfMeasurement unit)
         {
-            var newUnit = new UnitOfMeasurement(meeas);
+            var newUnit = new UnitOfMeasurement(unit)
+            {
+                _abbreviation = ""
+            };
             newUnit._multipleOfSI *= n;
-            newUnit._name = "";
-
             return newUnit;
         }
 
@@ -130,8 +124,7 @@ namespace Measurements
         public static UnitOfMeasurement operator /(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             var newUnit = m1 * m2.Inverse();
-            newUnit._name = m1._name + "/" + m2._name;
-
+            newUnit._abbreviation = m1._abbreviation + "/" + m2._abbreviation;
             return newUnit;
         }
 
@@ -147,16 +140,17 @@ namespace Measurements
 
         public static UnitOfMeasurement operator +(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
-            checkDimensions(m1, m2);
+            CheckDimensions(m1, m2);
 
             var newUnit = new UnitOfMeasurement(m1);
             newUnit._multipleOfSI = m1._multipleOfSI + m2._multipleOfSI;
 
             return newUnit;
         }
+
         public static UnitOfMeasurement operator -(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
-            checkDimensions(m1, m2);
+            CheckDimensions(m1, m2);
 
             var newUnit = new UnitOfMeasurement(m1);
             newUnit._multipleOfSI = m1._multipleOfSI - m2._multipleOfSI;
@@ -169,9 +163,9 @@ namespace Measurements
         {
             var newUnit = new UnitOfMeasurement(this);
 
-            newUnit._name = "1/(" + newUnit._name + ")";
-            newUnit._multipleOfSI = 1.0 / this._multipleOfSI;
-            newUnit._dimension = this._dimension.Inverse();
+            newUnit._abbreviation = "1/(" + newUnit._abbreviation + ")";
+            newUnit._multipleOfSI = 1.0 / _multipleOfSI;
+            newUnit._dimension = _dimension.Inverse();
 
             return newUnit;
         }
