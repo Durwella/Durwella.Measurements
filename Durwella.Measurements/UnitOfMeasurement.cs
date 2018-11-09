@@ -8,7 +8,7 @@ namespace Measurements
     /// </summary>
     public class UnitOfMeasurement
     {
-        private string _abbreviation;
+        private readonly string _abbreviation;
         private Dimension _dimension;
         private double _multipleOfSi = 1.0;
 
@@ -92,20 +92,16 @@ namespace Measurements
 
         public static UnitOfMeasurement operator *(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
-            return new UnitOfMeasurement(m2)
+            return new UnitOfMeasurement(abbreviation: m1._abbreviation + " " + m2._abbreviation, unit: m2)
             {
                 _multipleOfSi = m1._multipleOfSi * m2._multipleOfSi,
                 _dimension = m1._dimension * m2._dimension,
-                _abbreviation = m1._abbreviation + " " + m2._abbreviation
             };
         }
 
         public static UnitOfMeasurement operator *(double n, UnitOfMeasurement unit)
         {
-            var newUnit = new UnitOfMeasurement(unit)
-            {
-                _abbreviation = ""
-            };
+            var newUnit = new UnitOfMeasurement(abbreviation: "", unit: unit);
             newUnit._multipleOfSi *= n;
             return newUnit;
         }
@@ -117,9 +113,7 @@ namespace Measurements
 
         public static UnitOfMeasurement operator /(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
-            var newUnit = m1 * m2.Inverse();
-            newUnit._abbreviation = m1._abbreviation + "/" + m2._abbreviation;
-            return newUnit;
+            return new UnitOfMeasurement($"{m1._abbreviation}/{m2._abbreviation}", m1 * m2.Inverse());
         }
 
         public static UnitOfMeasurement operator /(double n, UnitOfMeasurement unit)
@@ -155,12 +149,11 @@ namespace Measurements
 
         protected UnitOfMeasurement Inverse()
         {
-            var newUnit = new UnitOfMeasurement(this);
-
-            newUnit._abbreviation = "1/(" + newUnit._abbreviation + ")";
-            newUnit._multipleOfSi = 1.0 / _multipleOfSi;
-            newUnit._dimension = _dimension.Inverse();
-
+            var newUnit = new UnitOfMeasurement($"1/{_abbreviation}", this)
+            {
+                _multipleOfSi = 1.0 / _multipleOfSi,
+                _dimension = _dimension.Inverse()
+            };
             return newUnit;
         }
     }
