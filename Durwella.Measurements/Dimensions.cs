@@ -17,7 +17,6 @@ namespace Measurements
             }
         }
 
-        internal static Dictionary<Dimension, Dimension> CompoundDimensions = new Dictionary<Dimension, Dimension>(new KeyComparer());
 
         // Basic Physical Dimensions
         public static Dimension Length = new Dimension("Length");
@@ -25,7 +24,7 @@ namespace Measurements
         public static Dimension Mass = new Dimension("Mass");
         public static Dimension[] Basic = new[] { Length, Time, Mass };
 
-        // Derived / Composite / Compound Physical Dimensions
+        // Derived Physical Dimensions
         public static Dimension Area = new Dimension("Area", Length * Length);
         public static Dimension Volume = new Dimension("Volume", Length * Length * Length);
         public static Dimension Density = new Dimension("Density", Mass / Volume);
@@ -34,5 +33,7 @@ namespace Measurements
         public static Dimension Acceleration = new Dimension("Acceleration", Velocity / Time);
         public static Dimension Force = new Dimension("Force", Mass * Acceleration);
         public static Dimension Pressure = new Dimension("Pressure", Force / Area);
+
+        internal static Dictionary<Dimension, Dimension> DerivedDimensions = new Dictionary<Dimension, Dimension>(new KeyComparer());
     }
 }

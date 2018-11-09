@@ -35,10 +35,10 @@ namespace Measurements
         {
             get
             {
-                if (Dimensions.CompoundDimensions.TryGetValue(_dimension, out Dimension compound))
+                if (Dimensions.DerivedDimensions.TryGetValue(_dimension, out Dimension derived))
                 {
-                    _dimension = compound;
-                    return compound;
+                    _dimension = derived;
+                    return derived;
                 }
                 else
                 {

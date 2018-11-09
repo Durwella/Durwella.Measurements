@@ -23,7 +23,7 @@ namespace Measurements
             //this._defaultUnit = dimension._defaultUnit;
             this._baseDimensions = dimension._baseDimensions;
 
-            Dimensions.CompoundDimensions.Add(dimension, this);
+            Dimensions.DerivedDimensions.Add(dimension, this);
         }
 
         private Dimension(RationalCombination<Dimension> combinable)

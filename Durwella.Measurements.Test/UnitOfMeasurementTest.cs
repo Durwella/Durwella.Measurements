@@ -20,7 +20,7 @@ namespace Measurements
         }
 
         [Fact(DisplayName = "ValueInSiUnits: 60 mph = 26.8224 m/s")]
-        public void CompoundUnitToSiValueTest()
+        public void DerivedUnitToSiValueTest()
         {
             var milesPerHour = new Unit("mph", Units.Miles / Units.Hours);
 
@@ -28,7 +28,7 @@ namespace Measurements
         }
 
         [Fact(DisplayName = "ValueInUnits: 10 m/s = 22.3694 mph")]
-        public void CompoundUnitFromSiValueTest()
+        public void DerivedUnitFromSiValueTest()
         {
             var metersPerSecond = Units.MetersPerSecond;
             var milesPerHour = new Unit("mph", Units.Miles / Units.Hours);

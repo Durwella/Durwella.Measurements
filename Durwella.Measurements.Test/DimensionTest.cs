@@ -26,9 +26,9 @@ namespace Measurements.Test
             var baseDimensionB = new Dimension("Base Dimension B");
             baseDimensionB.NewSiUnit("Unit B");
 
-            var compoundDimension = new Dimension("Compound Dimension", baseDimensionA / baseDimensionB);
+            var derived = new Dimension("Derived Dimension", baseDimensionA / baseDimensionB);
 
-            (compoundDimension * baseDimensionB).Should().Be(baseDimensionA);
+            (derived * baseDimensionB).Should().Be(baseDimensionA);
         }
     }
 }
