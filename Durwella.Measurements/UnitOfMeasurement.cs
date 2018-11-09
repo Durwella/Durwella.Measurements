@@ -36,14 +36,8 @@ namespace Measurements
             get
             {
                 if (Dimensions.DerivedDimensions.TryGetValue(_dimension, out Dimension derived))
-                {
                     _dimension = derived;
-                    return derived;
-                }
-                else
-                {
-                    return _dimension;
-                }
+                return _dimension;
             }
         }
 
