@@ -7,6 +7,12 @@ namespace Measurements
     {
         // https://en.wikipedia.org/wiki/United_States_customary_units
 
+        [Theory(DisplayName = "USCS:Consistent"), AutoMoqData]
+        public void Consistent(UscSystem subject)
+        {
+            subject.ShouldBeConsistent();
+        }
+
         [Theory(DisplayName = "USCS:Length"), AutoMoqData]
         public void UscLength(UscSystem subject)
         {
@@ -28,19 +34,21 @@ namespace Measurements
             subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
 
-        #region GetUnits() enumeration
-
-        [Theory(DisplayName = "USCS:Units Enumeration"), AutoMoqData]
-        public void EnumeratedUnitsMatchDimension(UscSystem subject)
+        [Theory(DisplayName = "USCS:Pressure"), AutoMoqData]
+        public void UscPressure(UscSystem subject)
         {
-            foreach (var dimension in Dimensions.Basic)
-            {
-                foreach (var unit in subject.GetUnits(dimension))
-                {
-                    unit.Dimension.Should().Be(dimension);
-                }
-            }
+            subject[Dimensions.Pressure].Should().Be(Units.PoundsPerSquareInch);
+            subject[Dimensions.Pressure].Dimension.Should().Be(Dimensions.Pressure);
         }
+
+        [Theory(DisplayName = "USCS:Force"), AutoMoqData]
+        public void Force(UscSystem subject)
+        {
+            subject[Dimensions.Force].Should().Be(Units.PoundsForce);
+            subject[Dimensions.Force].Dimension.Should().Be(Dimensions.Force);
+        }
+
+        #region GetUnits() enumeration
 
         [Theory(DisplayName = "USCS:Length Units"), AutoMoqData]
         public void EnumerateUnitsForLength(UscSystem subject)

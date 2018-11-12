@@ -8,6 +8,11 @@ namespace Measurements
     public interface IUnitSystem
     {
         /// <summary>
+        /// Returns the set of <see cref="Dimension"/>s that are available in this System
+        /// </summary>
+        IEnumerable<Dimension> Dimensions { get; }
+
+        /// <summary>
         /// Get the Unit System's standard <see cref="UnitOfMeasurement"/> 
         /// for the given <see cref="Dimension"/>.
         /// For example, returns kg for SI[Mass]

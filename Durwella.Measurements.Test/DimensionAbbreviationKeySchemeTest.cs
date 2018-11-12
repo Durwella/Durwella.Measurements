@@ -36,6 +36,7 @@ namespace Measurements.Test
                 subject.GetUnit(key).Should().Be(unit);
             }
         }
+
         [Theory(DisplayName = "Exceptions"), AutoMoqData]
         public void Exceptions(DimensionAbbreviationUnitKeyScheme subject)
         {

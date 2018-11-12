@@ -7,6 +7,12 @@ namespace Measurements
     {
         // https://en.wikipedia.org/wiki/Metric_system#Base_units
 
+        [Theory(DisplayName = "SI:Consistent"), AutoMoqData]
+        public void Consistent(SiSystem subject)
+        {
+            subject.ShouldBeConsistent();
+        }
+
         [Theory(DisplayName = "SI:Length"), AutoMoqData]
         public void SiLength(SiSystem subject)
         {
@@ -52,19 +58,21 @@ namespace Measurements
         //    subject[Dimensions.Quantity].Should().Be(Units.Moles);
         //}
 
-        #region GetUnits() enumeration
-
-        [Theory(DisplayName = "SI:Units Enumeration"), AutoMoqData]
-        public void EnumeratedUnitsMatchDimension(SiSystem subject)
+        [Theory(DisplayName = "SI:Pressure"), AutoMoqData]
+        public void SiPressure(SiSystem subject)
         {
-            foreach (var dimension in Dimensions.Basic)
-            {
-                foreach (var unit in subject.GetUnits(dimension))
-                {
-                    unit.Dimension.Should().Be(dimension);
-                }
-            }
+            subject[Dimensions.Pressure].Should().Be(Units.Pascals);
+            subject[Dimensions.Pressure].Dimension.Should().Be(Dimensions.Pressure);
         }
+
+        [Theory(DisplayName = "SI:Force"), AutoMoqData]
+        public void Force(SiSystem subject)
+        {
+            subject[Dimensions.Force].Should().Be(Units.Newtons);
+            subject[Dimensions.Force].Dimension.Should().Be(Dimensions.Force);
+        }
+
+        #region GetUnits() enumeration
 
         [Theory(DisplayName = "SI:Length Units"), AutoMoqData]
         public void EnumerateUnitsForLength(SiSystem subject)
