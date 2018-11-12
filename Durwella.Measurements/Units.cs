@@ -59,17 +59,21 @@ namespace Measurements
         #region Area
 
         public static Unit SquareMeters = Add(Dimensions.Area.NewSiUnit("m2"));
+        public static Unit SquareFeet = Add(new Unit("ft2", Feet * Feet));
         public static Unit SquareInches = Add(new Unit("in2", Inches * Inches));
 
         #endregion
         #region Volume
 
         public static Unit CubicMeters = Add(Dimensions.Volume.NewSiUnit("m3"));
+        public static Unit CubicFeet = Add(new Unit("ft3", Feet * Feet * Feet));
+        public static Unit CubicInches = Add(new Unit("in3", Inches * Inches * Inches));
 
         #endregion
         #region Density
 
         public static Unit KilogramsPerCubicMeter = Add(Dimensions.Density.NewSiUnit("kg/m3"));
+        public static Unit SlugsPerCubicFoot = Add(new Unit("slug/ft3", Slugs / CubicFeet));
 
         #endregion
         #region Frequency
@@ -80,11 +84,13 @@ namespace Measurements
         #region Velocity
 
         public static Unit MetersPerSecond = Add(Dimensions.Velocity.NewSiUnit("m/s"));
+        public static Unit FeetPerSecond = Add(new Unit("ft/s", Feet / Seconds));
 
         #endregion
         #region Acceleration
 
         public static Unit MetersPerSecondSquared = Add(Dimensions.Acceleration.NewSiUnit("m/s2"));
+        public static Unit FeetPerSecondSquared = Add(new Unit("ft/s2", Feet / (Seconds * Seconds)));
 
         #endregion
         #region Force

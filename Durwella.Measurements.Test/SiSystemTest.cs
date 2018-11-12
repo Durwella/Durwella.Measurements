@@ -17,21 +17,18 @@ namespace Measurements
         public void SiLength(SiSystem subject)
         {
             subject[Dimensions.Length].Should().Be(Units.Meters);
-            subject[Dimensions.Length].Dimension.Should().Be(Dimensions.Length);
         }
 
         [Theory(DisplayName = "SI:Mass"), AutoMoqData]
         public void SiMass(SiSystem subject)
         {
             subject[Dimensions.Mass].Should().Be(Units.Kilograms);
-            subject[Dimensions.Mass].Dimension.Should().Be(Dimensions.Mass);
         }
 
         [Theory(DisplayName = "SI:Time"), AutoMoqData]
         public void SiTime(SiSystem subject)
         {
             subject[Dimensions.Time].Should().Be(Units.Seconds);
-            subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
 
         //[Theory(DisplayName = "SI:Electromagnetism"), AutoMoqData]
@@ -62,14 +59,12 @@ namespace Measurements
         public void SiPressure(SiSystem subject)
         {
             subject[Dimensions.Pressure].Should().Be(Units.Pascals);
-            subject[Dimensions.Pressure].Dimension.Should().Be(Dimensions.Pressure);
         }
 
         [Theory(DisplayName = "SI:Force"), AutoMoqData]
         public void Force(SiSystem subject)
         {
             subject[Dimensions.Force].Should().Be(Units.Newtons);
-            subject[Dimensions.Force].Dimension.Should().Be(Dimensions.Force);
         }
 
         #region GetUnits() enumeration

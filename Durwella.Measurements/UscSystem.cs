@@ -10,17 +10,6 @@ namespace Measurements
     /// </summary>
     public class UscSystem : IUnitSystem
     {
-        private readonly Dimension[] _dimensions = new[]
-        {
-            // Basic
-            Length,
-            Mass,
-            Time,
-            // Derived
-            Pressure,
-            Force
-        };
-
         private readonly Dictionary<Dimension, UnitOfMeasurement> _baseDimensions = new Dictionary<Dimension, UnitOfMeasurement>
         {
             // Basic
@@ -28,8 +17,13 @@ namespace Measurements
             { Mass, PoundsMass },
             { Time, Seconds },
             // Derived
+            { Area, SquareFeet },
+            { Volume, CubicFeet },
+            { Density, SlugsPerCubicFoot },
+            { Velocity, FeetPerSecond },
+            { Acceleration, FeetPerSecondSquared },
+            { Force, PoundsForce },
             { Pressure, PoundsPerSquareInch },
-            { Force, PoundsForce }
         };
 
         private readonly UnitOfMeasurement[] _lengthUnits = new[]
@@ -48,17 +42,7 @@ namespace Measurements
             ShortTons,
         };
 
-        private readonly UnitOfMeasurement[] _pressureUnits = new[]
-        {
-            PoundsPerSquareInch
-        };
-
-        private readonly UnitOfMeasurement[] _forceUnits = new[]
-        {
-            PoundsForce
-        };
-
-        public IEnumerable<Dimension> Dimensions => _dimensions;
+        public IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
 
         public virtual UnitOfMeasurement this[Dimension dimension] =>
             _baseDimensions[dimension];
@@ -71,10 +55,8 @@ namespace Measurements
                 return _massUnits;
             if (dimension == Time)
                 return OfTime;
-            if (dimension == Pressure)
-                return _pressureUnits;
-            if (dimension == Force)
-                return _forceUnits;
+            else if (_baseDimensions.ContainsKey(dimension))
+                return new[] { this[dimension] };
             throw new KeyNotFoundException(dimension.Name);
         }
     }

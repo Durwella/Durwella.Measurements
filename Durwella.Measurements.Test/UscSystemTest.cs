@@ -17,35 +17,30 @@ namespace Measurements
         public void UscLength(UscSystem subject)
         {
             subject[Dimensions.Length].Should().Be(Units.Feet);
-            subject[Dimensions.Length].Dimension.Should().Be(Dimensions.Length);
         }
 
         [Theory(DisplayName = "USCS:Mass"), AutoMoqData]
         public void UscMass(UscSystem subject)
         {
             subject[Dimensions.Mass].Should().Be(Units.PoundsMass);
-            subject[Dimensions.Mass].Dimension.Should().Be(Dimensions.Mass);
         }
 
         [Theory(DisplayName = "USCS:Time"), AutoMoqData]
         public void UscTime(UscSystem subject)
         {
             subject[Dimensions.Time].Should().Be(Units.Seconds);
-            subject[Dimensions.Time].Dimension.Should().Be(Dimensions.Time);
         }
 
         [Theory(DisplayName = "USCS:Pressure"), AutoMoqData]
         public void UscPressure(UscSystem subject)
         {
             subject[Dimensions.Pressure].Should().Be(Units.PoundsPerSquareInch);
-            subject[Dimensions.Pressure].Dimension.Should().Be(Dimensions.Pressure);
         }
 
         [Theory(DisplayName = "USCS:Force"), AutoMoqData]
         public void Force(UscSystem subject)
         {
             subject[Dimensions.Force].Should().Be(Units.PoundsForce);
-            subject[Dimensions.Force].Dimension.Should().Be(Dimensions.Force);
         }
 
         #region GetUnits() enumeration

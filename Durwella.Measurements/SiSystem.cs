@@ -9,17 +9,6 @@ namespace Measurements
     /// </summary>
     public class SiSystem : IUnitSystem
     {
-        private readonly Dimension[] _dimensions = new[]
-{
-            // Basic
-            Length,
-            Mass,
-            Time,
-            // Derived
-            Pressure,
-            Force
-        };
-
         private readonly Dictionary<Dimension, UnitOfMeasurement> _baseDimensions = new Dictionary<Dimension, UnitOfMeasurement>
         {
             // Basic
@@ -27,8 +16,13 @@ namespace Measurements
             { Mass, Kilograms },
             { Time, Seconds },
             // Derived
+            { Area, SquareMeters },
+            { Volume, CubicMeters },
+            { Density, KilogramsPerCubicMeter },
+            { Velocity, MetersPerSecond },
+            { Acceleration, MetersPerSecondSquared },
+            { Force, Newtons },
             { Pressure, Pascals },
-            { Force, Newtons }
         };
 
         private readonly UnitOfMeasurement[] _lengthUnits = new[]
@@ -45,17 +39,7 @@ namespace Measurements
             Kilograms
         };
 
-        private readonly UnitOfMeasurement[] _pressureUnits = new[]
-        {
-            Pascals
-        };
-
-        private readonly UnitOfMeasurement[] _forceUnits = new[]
-        {
-            Newtons
-        };
-
-        public IEnumerable<Dimension> Dimensions => _dimensions;
+        public IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
 
         public virtual UnitOfMeasurement this[Dimension dimension] =>
             _baseDimensions[dimension];
@@ -69,10 +53,8 @@ namespace Measurements
                 return _massUnits;
             if (dimension == Time)
                 return OfTime;
-            if (dimension == Pressure)
-                return _pressureUnits;
-            if (dimension == Force)
-                return _forceUnits;
+            else if (_baseDimensions.ContainsKey(dimension))
+                return new[] { this[dimension] };
             throw new KeyNotFoundException(dimension.Name);
         }
     }
