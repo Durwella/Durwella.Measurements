@@ -42,6 +42,14 @@ namespace Measurements
             ShortTons,
         };
 
+        private readonly UnitOfMeasurement[] _velocityUnits = new[]
+        {
+            FeetPerSecond,
+            FeetPerMinute,
+            FeetPerHour,
+            MilesPerHour
+        };
+
         public IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
 
         public virtual UnitOfMeasurement this[Dimension dimension] =>
@@ -55,6 +63,8 @@ namespace Measurements
                 return _massUnits;
             if (dimension == Time)
                 return OfTime;
+            if (dimension == Velocity)
+                return _velocityUnits;
             else if (_baseDimensions.ContainsKey(dimension))
                 return new[] { this[dimension] };
             throw new KeyNotFoundException(dimension.Name);

@@ -84,7 +84,11 @@ namespace Measurements
         #region Velocity
 
         public static Unit MetersPerSecond = Add(Dimensions.Velocity.NewSiUnit("m/s"));
+        public static Unit KilometersPerHour = Add(new Unit("kph", Kilometers / Hours));
         public static Unit FeetPerSecond = Add(new Unit("ft/s", Feet / Seconds));
+        public static Unit FeetPerMinute = Add(new Unit("ft/min", Feet / Minutes));
+        public static Unit FeetPerHour = Add(new Unit("ft/hr", Feet / Hours));
+        public static Unit MilesPerHour = Add(new Unit("mph", Miles / Hours));
 
         #endregion
         #region Acceleration
