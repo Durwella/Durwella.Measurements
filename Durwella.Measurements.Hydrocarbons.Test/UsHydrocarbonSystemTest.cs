@@ -51,5 +51,15 @@ namespace Durwella.Measurements.Hydrocarbons.Test
             BarrelsPerDay.ValueInUnits(Units.CubicMetersPerHour)
                 .Should().BeApproximately(.0066, 5e-5);
         }
+
+        [Theory(DisplayName = "gal/10bbl"), AutoMoqData]
+        public void VolumeConcentrationGallons(UsHydrocarbonSystem subject)
+        {
+            subject.GetUnits(Dimensions.VolumeConcentration)
+                .Should().HaveCountGreaterThan(2)
+                .And.Contain(GallonsPerTenBarrels);
+            GallonsPerTenBarrels.Dimension
+                .Should().Be(Dimensions.VolumeConcentration);
+        }
     }
 }

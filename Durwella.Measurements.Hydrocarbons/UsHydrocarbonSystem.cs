@@ -21,6 +21,11 @@ namespace Durwella.Measurements.Hydrocarbons
             BarrelsPerDay
         };
 
+        private readonly UnitOfMeasurement[] _volumeConcentrationUnits = new[]
+        {
+            GallonsPerTenBarrels
+        };
+
         public override IEnumerable<Dimension> Dimensions =>
             base.Dimensions.Concat(new[] { HydrocarbonDimensions.PlugTime });
 
@@ -43,6 +48,8 @@ namespace Durwella.Measurements.Hydrocarbons
                 units = units.Concat(_volumeUnits);
             if (dimension == VolumeFlowRate)
                 units = units.Concat(_flowUnits);
+            if (dimension == VolumeConcentration)
+                units = units.Concat(_volumeConcentrationUnits);
             return units;
         }
     }

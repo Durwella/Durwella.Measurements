@@ -46,5 +46,7 @@ namespace Durwella.Measurements.Hydrocarbons
         public static Unit Plugs = HydrocarbonDimensions.PlugCount.NewSiUnit("plug");
 
         public static Unit HoursPerPlug = new Unit("hrs/plug", Hours / Plugs);
+
+        public static Unit GallonsPerTenBarrels = new Unit("gal/10bbl", UsGallons / (10 * Barrels));
     }
 }
