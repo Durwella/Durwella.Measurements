@@ -70,6 +70,7 @@ namespace Measurements
         public void MeetStandardSiDefinitions()
         {
             Units.Ounces.ValueInUnits(Units.Grams).Should().BeApproximately(28.3, 0.05);
+            Units.UsGallons.ValueInUnits(Units.Liters).Should().BeApproximately(3.785411784, 1e-9);
         }
 
         #endregion

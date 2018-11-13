@@ -13,6 +13,7 @@ namespace Measurements
         #region Length
 
         public static Unit Meters = Add(Dimensions.Length.NewSiUnit("m"));
+        public static Unit Decimeters = Add(new Unit("dm", Meters / 10));
         public static Unit Centimeters = Add(new Unit("cm", Meters / 100));
         public static Unit Millimeters = Add(new Unit("mm", Meters / 1000));
         public static Unit Kilometers = Add(new Unit("km", 1000 * Meters));
@@ -66,8 +67,12 @@ namespace Measurements
         #region Volume
 
         public static Unit CubicMeters = Add(Dimensions.Volume.NewSiUnit("m3"));
+        public static Unit CubicDecimeters = Add(new Unit("dm3", Decimeters * Decimeters * Decimeters));
+        public static Unit CubicCentimeters = Add(new Unit("cm3", Centimeters * Centimeters * Centimeters));
+        public static Unit Liters = Add(new Unit("L", 1 * CubicDecimeters));
         public static Unit CubicFeet = Add(new Unit("ft3", Feet * Feet * Feet));
         public static Unit CubicInches = Add(new Unit("in3", Inches * Inches * Inches));
+        public static Unit UsGallons = Add(new Unit("gal", 231 * CubicInches));
 
         #endregion
         #region Density

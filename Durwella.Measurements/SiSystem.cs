@@ -39,6 +39,14 @@ namespace Measurements
             Kilograms
         };
 
+        private readonly UnitOfMeasurement[] _volumeUnits = new[]
+        {
+            CubicCentimeters,
+            CubicDecimeters,
+            CubicMeters,
+            Liters
+        };
+
         private readonly UnitOfMeasurement[] _velocityUnits = new[]
         {
             MetersPerSecond,
@@ -61,6 +69,8 @@ namespace Measurements
                 return OfTime;
             if (dimension == Velocity)
                 return _velocityUnits;
+            if (dimension == Volume)
+                return _volumeUnits;
             else if (_baseDimensions.ContainsKey(dimension))
                 return new[] { this[dimension] };
             throw new KeyNotFoundException(dimension.Name);

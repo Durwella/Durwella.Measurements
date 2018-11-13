@@ -2,7 +2,7 @@
 
 namespace Measurements
 {
-    static class SystemTesting
+    public static class SystemTesting
     {
         /// <summary>
         /// Enumerates all available units in all available dimensions checking for consistency.
