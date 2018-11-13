@@ -4,20 +4,6 @@ namespace Durwella.Measurements
 {
     public static class Dimensions
     {
-        private class KeyComparer : IEqualityComparer<Dimension>
-        {
-            public bool Equals(Dimension dimension1, Dimension dimension2)
-            {
-                return dimension1.Equals(dimension2);
-            }
-
-            public int GetHashCode(Dimension dimension)
-            {
-                return dimension.GetHashCode();
-            }
-        }
-
-
         // Basic Physical Dimensions
         public static Dimension Length = new Dimension("Length");
         public static Dimension Time = new Dimension("Time");
@@ -25,7 +11,7 @@ namespace Durwella.Measurements
         public static Dimension[] Basic = new[] { Length, Time, Mass };
 
         // Derived Physical Dimensions
-        internal static Dictionary<Dimension, Dimension> DerivedDimensions = new Dictionary<Dimension, Dimension>(new KeyComparer());
+        internal static Dictionary<Dimension, Dimension> DerivedDimensions = new Dictionary<Dimension, Dimension>();
 
         public static Dimension Area = new Dimension("Area", Length * Length);
         public static Dimension Volume = new Dimension("Volume", Length * Length * Length);
