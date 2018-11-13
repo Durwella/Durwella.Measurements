@@ -17,10 +17,8 @@ namespace Durwella.Measurements
         public override bool Equals(object obj)
         {
             // TODO: Improve testing of this
-            var other = obj as RationalCombination<T>;
-            if (other == null) return false;
-
-            return Numerator.SequenceEqual(other.Numerator) 
+            if (!(obj is RationalCombination<T> other)) return false;
+            return Numerator.SequenceEqual(other.Numerator)
                 && Denominator.SequenceEqual(other.Denominator);
         }
 

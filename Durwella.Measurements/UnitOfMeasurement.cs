@@ -129,32 +129,28 @@ namespace Durwella.Measurements
         public static UnitOfMeasurement operator +(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             CheckDimensions(m1, m2);
-
-            var newUnit = new UnitOfMeasurement(m1);
-            newUnit._multipleOfSi = m1._multipleOfSi + m2._multipleOfSi;
-
-            return newUnit;
+            return new UnitOfMeasurement(m1)
+            {
+                _multipleOfSi = m1._multipleOfSi + m2._multipleOfSi
+            };
         }
 
         public static UnitOfMeasurement operator -(UnitOfMeasurement m1, UnitOfMeasurement m2)
         {
             CheckDimensions(m1, m2);
-
-            var newUnit = new UnitOfMeasurement(m1);
-            newUnit._multipleOfSi = m1._multipleOfSi - m2._multipleOfSi;
-
-            return newUnit;
+            return new UnitOfMeasurement(m1)
+            {
+                _multipleOfSi = m1._multipleOfSi - m2._multipleOfSi
+            };
         }
-
 
         protected UnitOfMeasurement Inverse()
         {
-            var newUnit = new UnitOfMeasurement($"1/{_abbreviation}", this)
+            return new UnitOfMeasurement($"1/{_abbreviation}", this)
             {
                 _multipleOfSi = 1.0 / _multipleOfSi,
                 _dimension = _dimension.Inverse()
             };
-            return newUnit;
         }
     }
 }

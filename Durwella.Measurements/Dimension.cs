@@ -7,7 +7,7 @@ namespace Durwella.Measurements
 {
     public class Dimension
     {
-        private string _name;
+        private readonly string _name;
         private Unit _defaultUnit;
         private RationalCombination<Dimension> _baseDimensions = new RationalCombination<Dimension>(new List<Dimension>(), new List<Dimension>());
 
@@ -110,8 +110,7 @@ namespace Durwella.Measurements
 
         public override bool Equals(object obj)
         {
-            var dimension = obj as Dimension;
-            if (dimension == null) return false;
+            if (!(obj is Dimension dimension)) return false;
 
             if (_baseDimensions.Numerator.Count() == 1 && _baseDimensions.Denominator.Count() == 0
                 && dimension._baseDimensions.Numerator.Count() == 1 && dimension._baseDimensions.Denominator.Count() == 0)
