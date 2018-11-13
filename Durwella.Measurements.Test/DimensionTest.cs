@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace Measurements.Test
+namespace Durwella.Measurements.Test
 {
     public class DimensionTest
     {

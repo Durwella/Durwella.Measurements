@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Unit = Measurements.UnitOfMeasurement;
+using Unit = Durwella.Measurements.UnitOfMeasurement;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     /// <summary>
     /// Commonly defined Units of Measurement

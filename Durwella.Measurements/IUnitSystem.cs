@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     /// <summary>
     /// A System of Measure such as SI or US Customary

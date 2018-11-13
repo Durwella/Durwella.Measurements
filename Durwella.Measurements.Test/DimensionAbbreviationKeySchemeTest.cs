@@ -2,9 +2,9 @@
 using System;
 using System.Collections.Generic;
 using Xunit;
-using static Measurements.Units;
+using static Durwella.Measurements.Units;
 
-namespace Measurements.Test
+namespace Durwella.Measurements.Test
 {
     public class DimensionAbbreviationKeySchemeTest
     {

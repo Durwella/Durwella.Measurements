@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unit = Measurements.UnitOfMeasurement;
+using Unit = Durwella.Measurements.UnitOfMeasurement;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     public class Dimension
     {

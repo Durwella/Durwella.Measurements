@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     /// <summary>
     /// A Unit of Measurement, this is, what is commonly referred to as a Unit.

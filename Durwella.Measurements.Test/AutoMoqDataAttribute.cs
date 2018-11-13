@@ -2,7 +2,7 @@
 using AutoFixture.AutoMoq;
 using AutoFixture.Xunit2;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     public class AutoMoqDataAttribute : AutoDataAttribute
     {

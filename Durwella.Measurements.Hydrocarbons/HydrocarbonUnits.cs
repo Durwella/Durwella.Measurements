@@ -1,5 +1,4 @@
-﻿using Measurements;
-using Unit = Measurements.UnitOfMeasurement;
+﻿using Unit = Durwella.Measurements.UnitOfMeasurement;
 
 namespace Durwella.Measurements.Hydrocarbons
 {

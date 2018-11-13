@@ -1,6 +1,6 @@
-﻿using static Measurements.Dimensions;
+﻿using static Durwella.Measurements.Dimensions;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     internal static class PredefinedSystems
     {

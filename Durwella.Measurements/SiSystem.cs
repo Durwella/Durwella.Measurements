@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using static Measurements.Dimensions;
-using static Measurements.Units;
+using static Durwella.Measurements.Dimensions;
+using static Durwella.Measurements.Units;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     /// <summary>
     /// The International System of Units (SI) or Metric System.

@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Measurements;
 using Xunit;
 
 namespace Durwella.Measurements.Hydrocarbons.Test

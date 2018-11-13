@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     public class UscSystemTest
     {

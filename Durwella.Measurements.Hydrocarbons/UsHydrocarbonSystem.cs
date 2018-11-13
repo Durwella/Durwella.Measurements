@@ -1,8 +1,7 @@
-﻿using Measurements;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using static Durwella.Measurements.Hydrocarbons.HydrocarbonUnits;
-using static Measurements.Dimensions;
+using static Durwella.Measurements.Dimensions;
 
 namespace Durwella.Measurements.Hydrocarbons
 {

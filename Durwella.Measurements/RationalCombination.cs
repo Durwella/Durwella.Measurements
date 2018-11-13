@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     internal class RationalCombination<T>
     {

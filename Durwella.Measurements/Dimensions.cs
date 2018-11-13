@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     public static class Dimensions
     {

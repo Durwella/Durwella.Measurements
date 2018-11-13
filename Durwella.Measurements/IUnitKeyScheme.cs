@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     /// <summary>
     /// A contract for getting a unique string Key for each <see cref="UnitOfMeasurement" /> and vice versa.

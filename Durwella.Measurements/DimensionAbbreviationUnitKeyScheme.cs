@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Measurements
+namespace Durwella.Measurements
 {
     /// <summary>
     /// Only works with the predefined <see cref="Units"/>!
