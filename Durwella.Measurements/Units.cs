@@ -127,6 +127,12 @@ namespace Durwella.Measurements
         public static Unit PoundsPerSquareInch = Add(new Unit("psi", PoundsForce / SquareInches));
 
         #endregion
+        #region
+
+        public static Unit VolumeRatio = Add(Dimensions.VolumeConcentration.NewSiUnit(""));
+        public static Unit VolumePercentage = Add(new Unit("%", 100 * VolumeRatio));
+
+        #endregion
 
         #region private
 

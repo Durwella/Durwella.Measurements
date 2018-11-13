@@ -19,6 +19,8 @@ namespace Durwella.Measurements
             Acceleration,
             Force,
             Pressure,
+            VolumeFlowRate,
+            VolumeConcentration
         };
     }
 }

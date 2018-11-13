@@ -25,6 +25,7 @@ namespace Durwella.Measurements
             { VolumeFlowRate, CubicFeetPerSecond },
             { Force, PoundsForce },
             { Pressure, PoundsPerSquareInch },
+            { VolumeConcentration, VolumeRatio },
         };
 
         private readonly UnitOfMeasurement[] _lengthUnits = new[]
@@ -64,6 +65,12 @@ namespace Durwella.Measurements
             GallonsPerMinute
         };
 
+        private readonly UnitOfMeasurement[] _volumeConcentrationUnits = new[]
+        {
+            VolumeRatio,
+            VolumePercentage
+        };
+
         public virtual IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
 
         public virtual UnitOfMeasurement this[Dimension dimension] =>
@@ -83,6 +90,8 @@ namespace Durwella.Measurements
                 return _volumeUnits;
             if (dimension == VolumeFlowRate)
                 return _flowUnits;
+            if (dimension == VolumeConcentration)
+                return _volumeConcentrationUnits;
             else if (_baseDimensions.ContainsKey(dimension))
                 return new[] { this[dimension] };
             throw new KeyNotFoundException(dimension.Name);

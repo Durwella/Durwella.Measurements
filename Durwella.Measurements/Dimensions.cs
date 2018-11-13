@@ -22,5 +22,8 @@ namespace Durwella.Measurements
         public static Dimension VolumeFlowRate = new Dimension("Volume Flow Rate", Volume / Time);
         public static Dimension Force = new Dimension("Force", Mass * Acceleration);
         public static Dimension Pressure = new Dimension("Pressure", Force / Area);
+
+        // https://en.wikipedia.org/wiki/Concentration#Volume_concentration
+        public static Dimension VolumeConcentration = new Dimension("Volume Concentration", Volume / Volume);
     }
 }
