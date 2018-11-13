@@ -1,8 +1,16 @@
-﻿using static Durwella.Measurements.Units;
+﻿using static Durwella.Measurements.Dimensions;
+using static Durwella.Measurements.Units;
 using Unit = Durwella.Measurements.UnitOfMeasurement;
 
 namespace Durwella.Measurements.Hydrocarbons
 {
+    public static class HydrocarbonDimensions
+    {
+        public static Dimension PlugCount = new Dimension("Plug Count");
+
+        public static Dimension PlugTime = new Dimension("Plug Time", Time / PlugCount);
+    }
+
     public static class HydrocarbonUnits
     {
         /// <summary>
@@ -34,5 +42,9 @@ namespace Durwella.Measurements.Hydrocarbons
         /// Barrels of Oil per Day of fluid flow rate (BOPD)
         /// </summary>
         public static Unit BarrelsPerDay = new Unit("BOPD", Barrels / Days);
+
+        public static Unit Plugs = HydrocarbonDimensions.PlugCount.NewSiUnit("plug");
+
+        public static Unit HoursPerPlug = new Unit("hrs/plug", Hours / Plugs);
     }
 }

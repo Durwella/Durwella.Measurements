@@ -60,7 +60,7 @@ namespace Durwella.Measurements
             CubicMetersPerHour
         };
 
-        public IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
+        public virtual IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
 
         public virtual UnitOfMeasurement this[Dimension dimension] =>
             _baseDimensions[dimension];

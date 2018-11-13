@@ -1,6 +1,9 @@
 using Durwella.Measurements.Testing;
 using FluentAssertions;
+using System.Linq;
 using Xunit;
+using static Durwella.Measurements.Hydrocarbons.HydrocarbonDimensions;
+using static Durwella.Measurements.Hydrocarbons.HydrocarbonUnits;
 
 namespace Durwella.Measurements.Hydrocarbons.Test
 {
@@ -19,7 +22,7 @@ namespace Durwella.Measurements.Hydrocarbons.Test
             volumeUnits.Should()
                 .HaveCountGreaterOrEqualTo(5)
                 .And.Contain(Units.UsGallons)
-                .And.Contain(HydrocarbonUnits.Barrels);
+                .And.Contain(Barrels);
         }
 
         [Theory(DisplayName = "Flow (bbls/min)"), AutoMoqData]
@@ -29,14 +32,23 @@ namespace Durwella.Measurements.Hydrocarbons.Test
             volumeUnits.Should()
                 .HaveCountGreaterOrEqualTo(3)
                 .And.Contain(Units.GallonsPerMinute)
-                .And.Contain(HydrocarbonUnits.BarrelsPerMinute)
-                .And.Contain(HydrocarbonUnits.BarrelsPerDay);
+                .And.Contain(BarrelsPerMinute)
+                .And.Contain(BarrelsPerDay);
+        }
+
+        [Theory(DisplayName = "hours/plug"), AutoMoqData]
+        public void HasPlugTime(UsHydrocarbonSystem subject)
+        {
+            var dimensions = subject.Dimensions;
+            dimensions.Should().HaveCountGreaterThan(new UscSystem().Dimensions.Count());
+            dimensions.Should().Contain(PlugTime);
+            subject[PlugTime].Should().Be(HoursPerPlug);
         }
 
         [Fact(DisplayName = "bbls/day = .0066 m3/hr")]
         public void FluidBarrelsPerDayToSi()
         {
-            HydrocarbonUnits.BarrelsPerDay.ValueInUnits(Units.CubicMetersPerHour)
+            BarrelsPerDay.ValueInUnits(Units.CubicMetersPerHour)
                 .Should().BeApproximately(.0066, 5e-5);
         }
     }

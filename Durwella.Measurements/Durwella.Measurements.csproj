@@ -3,15 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Durwella.Measurements</PackageId>
-    <Authors>durwella,jfoshee,jfoshee_durwella,neal.miller</Authors>
+    <Authors>durwella</Authors>
     <Description>Utilities for using measurements with units.</Description>
     <Copyright>Copyright 2018 (c) Durwella. All rights reserved.</Copyright>
     <PackageTags>units measurments physics science engineering metric imperial</PackageTags>
     <PackageProjectUrl>https://github.com/Durwella/Durwella.Measurements</PackageProjectUrl>
     <Title>Durwella Measurements</Title>
-    <Company>Durwella LLC</Company>
-    <Version>3.0.0</Version>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <Company>Durwella</Company>
+    <Version>3.0.1</Version>
   </PropertyGroup>
 
 </Project>
