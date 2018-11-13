@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>3.0.0</Version>
+    <Description>Measurement units used in the Oil &amp; Gas (Hydrocarbon) Industry. Includes Barrels of Oil (bbls), and derived.</Description>
+    <Authors>durwella,jfoshee_durwella</Authors>
+    <Company>Durwella</Company>
+    <PackageTags>units barrels oil gas bbls bopd</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
