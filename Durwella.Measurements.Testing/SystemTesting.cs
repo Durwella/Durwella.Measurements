@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 
-namespace Durwella.Measurements
+namespace Durwella.Measurements.Testing
 {
     public static class SystemTesting
     {

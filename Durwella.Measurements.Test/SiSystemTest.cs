@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using Durwella.Measurements.Testing;
+using FluentAssertions;
 using Xunit;
 
 namespace Durwella.Measurements

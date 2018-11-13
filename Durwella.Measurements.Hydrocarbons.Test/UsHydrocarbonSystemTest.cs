@@ -1,3 +1,4 @@
+using Durwella.Measurements.Testing;
 using FluentAssertions;
 using Xunit;
 

@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Durwella.Measurements.Hydrocarbons\Durwella.Measurements.Hydrocarbons.csproj" />
-    <ProjectReference Include="..\Durwella.Measurements.Test\Durwella.Measurements.Test.csproj" />
+    <ProjectReference Include="..\Durwella.Measurements.Testing\Durwella.Measurements.Testing.csproj" />
     <ProjectReference Include="..\Durwella.Measurements\Durwella.Measurements.csproj" />
   </ItemGroup>
 

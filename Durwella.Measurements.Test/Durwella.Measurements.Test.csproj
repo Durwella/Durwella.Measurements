@@ -18,10 +18,11 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="5.4.2" />
+    <PackageReference Include="FluentAssertions" Version="5.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Durwella.Measurements.Testing\Durwella.Measurements.Testing.csproj" />
     <ProjectReference Include="..\Durwella.Measurements\Durwella.Measurements.csproj" />
   </ItemGroup>
 </Project>

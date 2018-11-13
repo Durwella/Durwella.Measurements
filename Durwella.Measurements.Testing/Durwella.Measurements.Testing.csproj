@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoFixture.AutoMoq" Version="4.5.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.5.0" />
+    <PackageReference Include="FluentAssertions" Version="5.5.0" />
+    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Durwella.Measurements\Durwella.Measurements.csproj" />
+  </ItemGroup>
+
+</Project>
