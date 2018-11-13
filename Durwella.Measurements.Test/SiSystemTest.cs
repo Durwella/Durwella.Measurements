@@ -87,7 +87,7 @@ namespace Durwella.Measurements
         public void EnumerateUnitsForTime(SiSystem subject)
         {
             subject.GetUnits(Dimensions.Time).Should().BeEquivalentTo(
-                Units.Hours, Units.Minutes, Units.Seconds);
+                Units.Days, Units.Hours, Units.Minutes, Units.Seconds);
         }
 
         #endregion

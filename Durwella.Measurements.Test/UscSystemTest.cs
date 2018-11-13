@@ -63,7 +63,7 @@ namespace Durwella.Measurements
         public void EnumerateUnitsForTime(UscSystem subject)
         {
             subject.GetUnits(Dimensions.Time).Should().BeEquivalentTo(
-                Units.Hours, Units.Minutes, Units.Seconds);
+                Units.Days, Units.Hours, Units.Minutes, Units.Seconds);
         }
 
         [Fact(DisplayName = "USCS:SI Definitions")]

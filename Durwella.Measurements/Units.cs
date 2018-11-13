@@ -26,9 +26,10 @@ namespace Durwella.Measurements
         #region Time
 
         public static Unit Seconds = Add(Dimensions.Time.NewSiUnit("s"));
-        public static Unit Minutes = Add(new Unit("min", Seconds * 60.0));
-        public static Unit Hours = Add(new Unit("hr", Minutes * 60.0));
-        internal static Unit[] OfTime = new[] { Seconds, Minutes, Hours };
+        public static Unit Minutes = Add(new Unit("min", 60 * Seconds));
+        public static Unit Hours = Add(new Unit("hr", 60 * Minutes));
+        public static Unit Days = Add(new Unit("day", 24 * Hours));
+        internal static Unit[] OfTime = new[] { Seconds, Minutes, Hours, Days };
 
         #endregion
         #region Mass
@@ -100,6 +101,18 @@ namespace Durwella.Measurements
 
         public static Unit MetersPerSecondSquared = Add(Dimensions.Acceleration.NewSiUnit("m/s2"));
         public static Unit FeetPerSecondSquared = Add(new Unit("ft/s2", Feet / (Seconds * Seconds)));
+
+        #endregion
+        #region Volume Flow Rate
+
+        public static Unit CubicMetersPerSecond = Add(Dimensions.VolumeFlowRate.NewSiUnit("m3/s"));
+        public static Unit CubicMetersPerHour = Add(new Unit("m3/hr", CubicMeters / Hours));
+        public static Unit CubicFeetPerSecond = Add(new Unit("ft3/s", CubicFeet / Seconds));
+
+        /// <summary>
+        /// U.S. Gallons per minute (GPM) fluid flow rate
+        /// </summary>
+        public static Unit GallonsPerMinute = Add(new Unit("GPM", UsGallons / Minutes));
 
         #endregion
         #region Force

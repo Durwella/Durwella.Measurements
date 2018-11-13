@@ -33,6 +33,7 @@ namespace Durwella.Measurements
         public static Dimension Frequency = new Dimension("Frequency", Time.Inverse());
         public static Dimension Velocity = new Dimension("Velocity", Length / Time);
         public static Dimension Acceleration = new Dimension("Acceleration", Velocity / Time);
+        public static Dimension VolumeFlowRate = new Dimension("Volume Flow Rate", Volume / Time);
         public static Dimension Force = new Dimension("Force", Mass * Acceleration);
         public static Dimension Pressure = new Dimension("Pressure", Force / Area);
     }

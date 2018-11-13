@@ -21,6 +21,7 @@ namespace Durwella.Measurements
             { Density, KilogramsPerCubicMeter },
             { Velocity, MetersPerSecond },
             { Acceleration, MetersPerSecondSquared },
+            { VolumeFlowRate, CubicMetersPerSecond },
             { Force, Newtons },
             { Pressure, Pascals },
         };
@@ -53,11 +54,16 @@ namespace Durwella.Measurements
             KilometersPerHour
         };
 
+        private readonly UnitOfMeasurement[] _flowUnits = new[]
+        {
+            CubicMetersPerSecond,
+            CubicMetersPerHour
+        };
+
         public IEnumerable<Dimension> Dimensions => PredefinedSystems.Dimensions;
 
         public virtual UnitOfMeasurement this[Dimension dimension] =>
             _baseDimensions[dimension];
-
 
         public virtual IEnumerable<UnitOfMeasurement> GetUnits(Dimension dimension)
         {
@@ -71,6 +77,8 @@ namespace Durwella.Measurements
                 return _velocityUnits;
             if (dimension == Volume)
                 return _volumeUnits;
+            if (dimension == VolumeFlowRate)
+                return _flowUnits;
             else if (_baseDimensions.ContainsKey(dimension))
                 return new[] { this[dimension] };
             throw new KeyNotFoundException(dimension.Name);
