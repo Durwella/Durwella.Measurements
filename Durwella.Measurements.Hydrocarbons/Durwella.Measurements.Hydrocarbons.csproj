@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!-- Target netstandard1.3 to be compatible with .NET 4.6 -->
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>3.1.0</Version>
+    <Version>3.1.1</Version>
     <Description>Measurement units used in the Oil &amp; Gas (Hydrocarbon) Industry. Includes Barrels of Oil (bbls), and derived.</Description>
     <Authors>durwella,jfoshee_durwella</Authors>
     <Company>Durwella</Company>
