@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using static Durwella.Measurements.Hydrocarbons.HydrocarbonUnits;
+using static Durwella.Measurements.Dimensions;
 
 namespace Durwella.Measurements.Hydrocarbons
 {
@@ -18,12 +19,21 @@ namespace Durwella.Measurements.Hydrocarbons
                 return base[dimension];
             }
         }
+        private readonly UnitOfMeasurement[] _volumeConcentrationUnits = new[]
+        {
+            PartsPerMillion //not technically a volume concentration?
+        };
 
         public override IEnumerable<UnitOfMeasurement> GetUnits(Dimension dimension)
         {
             if (dimension == HydrocarbonDimensions.PlugTime)
                 return new[] { HoursPerPlug };
-            return base.GetUnits(dimension);
+            var units = base.GetUnits(dimension);
+          
+            if (dimension == VolumeConcentration)
+                units = units.Concat(_volumeConcentrationUnits);
+            
+            return units;
         }
     }
 }

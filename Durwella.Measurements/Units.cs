@@ -108,7 +108,7 @@ namespace Durwella.Measurements
         public static Unit CubicMetersPerSecond = Add(Dimensions.VolumeFlowRate.NewSiUnit("m3/s"));
         public static Unit CubicMetersPerHour = Add(new Unit("m3/hr", CubicMeters / Hours));
         public static Unit CubicFeetPerSecond = Add(new Unit("ft3/s", CubicFeet / Seconds));
-
+        
         /// <summary>
         /// U.S. Gallons per minute (GPM) fluid flow rate
         /// </summary>
@@ -127,11 +127,11 @@ namespace Durwella.Measurements
         public static Unit PoundsPerSquareInch = Add(new Unit("psi", PoundsForce / SquareInches));
 
         #endregion
-        #region
+        #region Volume Concentration
 
         public static Unit VolumeRatio = Add(Dimensions.VolumeConcentration.NewSiUnit(""));
         public static Unit VolumePercentage = Add(new Unit("%", 100 * VolumeRatio));
-
+    
         #endregion
 
         #region private

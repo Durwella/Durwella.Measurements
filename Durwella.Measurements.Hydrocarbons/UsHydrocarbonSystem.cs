@@ -18,12 +18,20 @@ namespace Durwella.Measurements.Hydrocarbons
         private readonly UnitOfMeasurement[] _flowUnits = new[]
         {
             BarrelsPerMinute,
-            BarrelsPerDay
+            BarrelsPerDay,
+            ThousandCubicFeetPerDay,
+            MillionCubicFeetPerDay,
         };
 
         private readonly UnitOfMeasurement[] _volumeConcentrationUnits = new[]
         {
-            GallonsPerTenBarrels
+            GallonsPerTenBarrels,
+            PartsPerMillion //not technically a volume concentration?
+        };
+
+        private readonly UnitOfMeasurement[] _densityUnits = new[]
+        {
+            PoundsPerGallon
         };
 
         public override IEnumerable<Dimension> Dimensions =>
@@ -50,6 +58,8 @@ namespace Durwella.Measurements.Hydrocarbons
                 units = units.Concat(_flowUnits);
             if (dimension == VolumeConcentration)
                 units = units.Concat(_volumeConcentrationUnits);
+            if (dimension == Density)
+                units = units.Concat(_densityUnits);
             return units;
         }
     }

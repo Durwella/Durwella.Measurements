@@ -43,10 +43,22 @@ namespace Durwella.Measurements.Hydrocarbons
         /// </summary>
         public static Unit BarrelsPerDay = new Unit("BOPD", Barrels / Days);
 
+        public static Unit MillionCubicFeetPerDay = new Unit("MMSCFD", 1_000_000 * CubicFeet / Days);
+
+        public static Unit ThousandCubicFeetPerDay = new Unit("MSCFD", 1_000 * CubicFeet / Days);
+
+
         public static Unit Plugs = HydrocarbonDimensions.PlugCount.NewSiUnit("plug");
 
         public static Unit HoursPerPlug = new Unit("hrs/plug", Hours / Plugs);
 
         public static Unit GallonsPerTenBarrels = new Unit("gal/10bbl", UsGallons / (10 * Barrels));
+
+        public static Unit PoundsPerGallon = new Unit("ppg", PoundsMass / UsGallons);
+
+        public static Unit PartsPerMillion = new Unit("ppm", 1_000_000 * VolumeRatio);
+
+
+
     }
 }
